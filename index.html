@@ -1,0 +1,3612 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinary Bacteriology - Complete Course</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .lecture-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .lecture-nav a {
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .lecture-nav a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .quiz-question {
+            background: #f8f9ff;
+            border-left: 5px solid #667eea;
+            padding: 18px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            animation: quizCardIn 0.35s ease;
+            transform-origin: center;
+        }
+
+        .quiz-question h4 {
+            margin-bottom: 10px;
+            color: #1e3c72;
+        }
+
+        .quiz-options label {
+            display: block;
+            margin: 8px 0;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .quiz-options label:hover {
+            background: #eef2ff;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .quiz-btn {
+            border: none;
+            border-radius: 25px;
+            padding: 12px 22px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-btn.primary {
+            background: #1e8449;
+            color: white;
+        }
+
+        .quiz-btn.secondary {
+            background: #dfe6ff;
+            color: #1e3c72;
+        }
+
+        .quiz-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .quiz-result {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .quiz-result.pass {
+            background: #eafaf1;
+            border-left: 5px solid #27ae60;
+            color: #145a32;
+        }
+
+        .quiz-result.fail {
+            background: #fdecea;
+            border-left: 5px solid #c0392b;
+            color: #7b241c;
+        }
+
+        .quiz-progress {
+            margin: 12px 0 18px;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        .quiz-status {
+            margin-top: 12px;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .quiz-question.is-exiting {
+            animation: quizCardOut 0.22s ease forwards;
+        }
+
+        @keyframes quizCardIn {
+            from {
+                opacity: 0;
+                transform: translateX(18px) scale(0.99);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes quizCardOut {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-18px) scale(0.99);
+            }
+        }
+        
+        .lecture-section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .lecture-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lecture-header:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .lecture-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        
+        .lecture-header .meta {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        
+        .lecture-content {
+            padding: 30px;
+            display: none;
+        }
+        
+        .lecture-content.active {
+            display: block;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 8px;
+        }
+        
+        h4 {
+            color: #764ba2;
+            margin: 20px 0 10px 0;
+            font-size: 1.2em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background: #e8eaf6;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .memory-trick {
+            background: linear-gradient(135deg, #f9ca24 0%, #f0932b 100%);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        
+        .memory-trick::before {
+            content: "💡 MEMORY TRICK: ";
+            font-weight: bold;
+            color: #d35400;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #ff4757 0%, #c44569 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #a32a46;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #2ed573 0%, #1e90ff 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .comparison-table {
+            background: #f1f2f6;
+        }
+        
+        .comparison-table th {
+            background: #2f3542;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.8;
+        }
+        
+        .lifecycle {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 2;
+            border-left: 5px solid #667eea;
+        }
+        
+        .definition-box {
+            background: #e8f4f8;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .definition-box strong {
+            color: #17a2b8;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .checklist li::before {
+            content: "☐ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .checklist li.checked::before {
+            content: "☑ ";
+            color: #2ed573;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .lecture-nav {
+                flex-direction: column;
+            }
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 25px;
+            height: 30px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(135deg, #2ed573 0%, #1e90ff 100%);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s ease;
+        }
+        
+        .exam-tip {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #5f3dc4;
+        }
+        
+        .exam-tip::before {
+            content: "📝 EXAM TIP: ";
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .species-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .species-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #667eea;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px;
+        }
+        
+        .tag.danger {
+            background: #ff4757;
+        }
+        
+        .tag.success {
+            background: #2ed573;
+        }
+        
+        .tag.warning {
+            background: #f9ca24;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦠 Veterinary Bacteriology</h1>
+            <p>Complete Course Notes - DVM Program</p>
+            <p>FVAS Syndicate, Gomal University</p>
+            <p>Session 2024-2029 | Group A+B</p>
+        </header>
+
+        <div class="success-box">
+            <strong>📊 Course Progress:</strong> 7 out of 7 Lectures Completed (100%)
+            <div class="progress-bar">
+                <div class="progress-fill">100% COMPLETE</div>
+            </div>
+        </div>
+
+        <nav class="lecture-nav">
+            <a href="#syllabus" onclick="showSyllabus()">Syllabus</a>
+            <a href="#lec1" onclick="showLecture(1)">Lec #1: Brucellosis</a>
+            <a href="#lec2" onclick="showLecture(2)">Lec #2: Pasteurella</a>
+            <a href="#lec3" onclick="showLecture(3)">Lec #3: Salmonellosis</a>
+            <a href="#lec4" onclick="showLecture(4)">Lec #4: Listeriosis</a>
+            <a href="#lec5" onclick="showLecture(5)">Lec #5: E. coli</a>
+            <a href="#lec6" onclick="showLecture(6)">Lec #6: Streptococcus</a>
+            <a href="#lec7" onclick="showLecture(7)">Lec #7: Staphylococcus</a>
+            <a href="#quiz" onclick="showQuiz()">Quiz</a>
+            <a href="#summary" onclick="showSummary()">Summary</a>
+        </nav>
+
+        <!-- SYLLABUS SECTION -->
+        <section id="syllabus" class="lecture-section">
+            <div class="lecture-header" onclick="toggleSyllabus()">
+                <h2>📊 COURSE SYLLABUS</h2>
+                <div class="meta">Outline of Bacteriology Topics</div>
+            </div>
+            <div class="lecture-content" id="content-syllabus">
+                <h3>IMPORTANT NOTES FOR STUDENTS</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Topic</th>
+                        <th>Coverage Status</th>
+                    </tr>
+                    <tr>
+                        <td>Brucellosis</td>
+                        <td>✅ Covered in Lecture #1</td>
+                    </tr>
+                    <tr>
+                        <td>Pasteurella haemolytica</td>
+                        <td>✅ Covered in Lecture #2</td>
+                    </tr>
+                    <tr>
+                        <td>Salmonellosis</td>
+                        <td>✅ Covered in Lecture #3</td>
+                    </tr>
+                    <tr>
+                        <td>Listeriosis</td>
+                        <td>✅ Covered in Lecture #4</td>
+                    </tr>
+                    <tr>
+                        <td>Escherichia coli</td>
+                        <td>✅ Covered in Lecture #5</td>
+                    </tr>
+                    <tr>
+                        <td>Streptococcus spp.</td>
+                        <td>✅ Covered in Lecture #6</td>
+                    </tr>
+                    <tr>
+                        <td>Staphylococcus aureus</td>
+                        <td>✅ Covered in Lecture #7</td>
+                    </tr>
+                </table>
+
+                <h3>KEY BACTERIAL DISEASES</h3>
+                <table>
+                    <tr>
+                        <th>Lecture</th>
+                        <th>Topic</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>Lec #1</td>
+                        <td>Brucellosis</td>
+                        <td><span class="tag success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lec #2</td>
+                        <td>Pasteurella haemolytica</td>
+                        <td><span class="tag success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lec #3</td>
+                        <td>Salmonellosis</td>
+                        <td><span class="tag success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lec #4</td>
+                        <td>Listeriosis</td>
+                        <td><span class="tag success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lec #5</td>
+                        <td>Escherichia coli</td>
+                        <td><span class="tag success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lec #6</td>
+                        <td>Streptococcus spp.</td>
+                        <td><span class="tag success">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lec #7</td>
+                        <td>Staphylococcus aureus</td>
+                        <td><span class="tag success">Completed</span></td>
+                    </tr>
+                </table>
+
+                <div class="exam-tip">
+                    Focus on Brucellosis as a major zoonotic disease affecting reproductive health in livestock.
+                </div>
+            </div>
+        </section>
+
+        <!-- LECTURE #2: PASTEURELLA HAEMOLYTICA -->
+        <section id="lec2" class="lecture-section">
+            <div class="lecture-header" onclick="toggleLecture(2)">
+                <h2>&#128214; Lecture #2: Pasteurella haemolytica</h2>
+                <div class="meta">Bacteriology | Respiratory Pathogen causing Shipping Fever</div>
+            </div>
+            <div class="lecture-content" id="content-2">
+
+                <div class="highlight-box">
+                    <strong>🎯 DEFINITION:</strong> <em>Pasteurella haemolytica</em> is a Gram-negative, non-motile coccobacillus that is a normal commensal of the upper respiratory tract in ruminants but becomes pathogenic under stress, causing fibrinous bronchopneumonia (shipping fever).
+                </div>
+
+                <h3>1. MORPHOLOGY AND STAINING</h3>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Shape</td>
+                        <td>Short ovoid rods (coccobacilli)</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-negative</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Special feature</td>
+                        <td><strong>Bipolar staining</strong> (safety-pin appearance with certain stains like Giemsa or Wayson)</td>
+                    </tr>
+                    <tr>
+                        <td>Motility</td>
+                        <td>Non-motile (no flagella)</td>
+                    </tr>
+                    <tr>
+                        <td>Capsule</td>
+                        <td>Some strains are capsulated (virulence factor)</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "SAFETY PIN Brucella" → Bipolar staining pattern resembles a safety pin (shared with Yersinia pestis).
+                </div>
+
+                <h3>2. CULTURAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Detail</th>
+                    </tr>
+                    <tr>
+                        <td>Oxygen requirement</td>
+                        <td><strong>Aerobic and facultatively anaerobic</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Growth media</td>
+                        <td>Grows on ordinary lab media but enhanced by blood or serum enrichment</td>
+                    </tr>
+                    <tr>
+                        <td>Blood agar</td>
+                        <td>Non-hemolytic or occasionally alpha-hemolytic</td>
+                    </tr>
+                    <tr>
+                        <td>Colony appearance</td>
+                        <td>Small, greyish, translucent, convex colonies</td>
+                    </tr>
+                    <tr>
+                        <td>MacConkey agar</td>
+                        <td><strong>Does NOT grow</strong> (fastidious organism)</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ IMPORTANT:</strong> Does not grow on MacConkey agar — distinguishes it from many other Gram-negative enterics.
+                </div>
+
+                <h3>3. EPIDEMIOLOGY AND PATHOGENESIS</h3>
+
+                <h4>Epidemiology</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Reservoir</td>
+                        <td><strong>Normal commensal</strong> of upper respiratory tract (nasal passages, tonsils) in cattle, sheep, and goats</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission</td>
+                        <td>Inhalation of infected droplets from carrier animals</td>
+                    </tr>
+                    <tr>
+                        <td>Predisposing factors</td>
+                        <td>Stress factors: transport (shipping), viral infections (IBH, BVD, IBR), overcrowding, poor ventilation, extreme weather changes, handling, mixing of animals</td>
+                    </tr>
+                    <tr>
+                        <td>Susceptible species</td>
+                        <td>Cattle (mainly), sheep, goats; occasionally wild ruminants</td>
+                    </tr>
+                </table>
+
+                <h4>Pathogenesis</h4>
+                <table>
+                    <tr>
+                        <th>Step</th>
+                        <th>Process</th>
+                    </tr>
+                    <tr>
+                        <td>Invasion</td>
+                        <td>Organism colonizes respiratory epithelium following stress-induced immunosuppression</td>
+                    </tr>
+                    <tr>
+                        <td>Toxin production</td>
+                        <td><strong>Leukotoxin</strong> (exotoxin) destroys alveolar macrophages and neutrophils</td>
+                    </tr>
+                    <tr>
+                        <td>Immune evasion</td>
+                        <td>Capsule (in some serovars) inhibits phagocytosis</td>
+                    </tr>
+                    <tr>
+                        <td>Result</td>
+                        <td>Alveolar damage, fibrinous bronchopneumonia, septicemia, and pleurisy</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "Shipping fever = Stress + Pasteurella" → Stress from transport allows commensal Pasteurella to become invasive.
+                </div>
+
+                <h3>4. SYMPTOMATOLOGY</h3>
+
+                <h4>In Case of Pneumonia (Shipping Fever)</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Body temperature</td>
+                        <td>High fever (rise in body temperature)</td>
+                    </tr>
+                    <tr>
+                        <td>Respiratory rate</td>
+                        <td>Rapid respiration</td>
+                    </tr>
+                    <tr>
+                        <td>Death timeline</td>
+                        <td>Acute cases: animal can die within 12-48 hours</td>
+                    </tr>
+                    <tr>
+                        <td>Milder cases</td>
+                        <td>Spasmodic coughing, recovery uncommon without aggressive treatment</td>
+                    </tr>
+                    <tr>
+                        <td>Lung lesions</td>
+                        <td>Fibrinous bronchopneumonia, consolidation, pleurisy, lung abscesses</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🦠 VIRULENCE FACTOR:</strong> The <strong>leukotoxin</strong> produced by <em>P. haemolytica</em> is the primary virulence factor that destroys white blood cells, impairing the immune response and allowing severe lung tissue damage.
+                </div>
+
+                <h4>Additional Signs</h4>
+                <ul>
+                    <li>Anorexia (loss of appetite)</li>
+                    <li>Depression, listlessness</li>
+                    <li>Nasal discharge (often serous to mucopurulent)</li>
+                    <li>Pleuritic pain — grunting when pressure applied to chest</li>
+                    <li>Diarrhea may accompany systemic infection</li>
+                </ul>
+
+                <h3>5. DIAGNOSIS</h3>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Clinical signs</td>
+                        <td>Acute respiratory distress following transport or stress</td>
+                    </tr>
+                    <tr>
+                        <td>Postmortem</td>
+                        <td>Fibrinous pneumonia, lung consolidation, pleural exudate</td>
+                    </tr>
+                    <tr>
+                        <td>Bacteriology</td>
+                        <td>Isolation from lung tissue, pleural fluid, or nasal swabs on blood agar</td>
+                    </tr>
+                    <tr>
+                        <td>Colony ID</td>
+                        <td>Small, translucent colonies; Gram stain shows bipolar staining coccobacilli</td>
+                    </tr>
+                    <tr>
+                        <td>Biochemical</td>
+                        <td>Catalase +, oxidase +, sugar fermentation tests</td>
+                    </tr>
+                </table>
+
+                <h3>6. CONTROL AND PREVENTION</h3>
+                <table>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Vaccination</strong></td>
+                        <td>Available bacterins and modified live vaccines (often combined with other respiratory pathogens like IBR, PI3, BVD)</td>
+                    </tr>
+                    <tr>
+                        <td>Vaccine timing</td>
+                        <td>Administered before stress events (transport, weaning, comingling)</td>
+                    </tr>
+                    <tr>
+                        <td>Antibiotics</td>
+                        <td>Therapeutic use: penicillin, tetracyclines, florfenicol; prophylaxis during high-risk periods</td>
+                    </tr>
+                    <tr>
+                        <td>Stress reduction</td>
+                        <td>Proper ventilation, avoid overcrowding, gradual weaning, minimize transport duration, provide rest and feeding breaks</td>
+                    </tr>
+                    <tr>
+                        <td>Management</td>
+                        <td>Separate sick animals; maintain good hygiene; avoid mixing different age groups</td>
+                    </tr>
+                </table>
+
+                <div class="success-box">
+                    <strong>✅ KEY PREVENTION POINTS:</strong> Combine vaccination with good husbandry practices. Reduce stress before transport; minimize exposure to viral infections; early detection and isolation of affected animals.
+                </div>
+
+                <h3>7. PUBLIC HEALTH SIGNIFICANCE</h3>
+                <div class="definition-box">
+                    <strong>Zoonotic potential:</strong> <em>Pasteurella haemolytica</em> is generally not considered a significant human pathogen. Rare zoonotic transmission via animal bites or close contact may cause wound infections or respiratory illness in immunocompromised individuals, but this is uncommon.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LECTURE #1: BRUCELLOSIS -->
+        <section id="lec1" class="lecture-section">
+            <div class="lecture-header" onclick="toggleLecture(1)">
+                <h2>&#128214; Lecture #1: Brucellosis</h2>
+                <div class="meta">Bacteriology | Zoonotic Disease of Reproductive Tract</div>
+            </div>
+            <div class="lecture-content" id="content-1">
+
+                <div class="highlight-box">
+                    <strong>🎯 DEFINITION:</strong> Brucellosis is a zoonotic bacterial disease caused by genus <em>Brucella</em>, primarily affecting the reproductive system of animals, causing abortion and infertility.
+                </div>
+
+                <h3>1. CAUSATIVE AGENTS</h3>
+                <table>
+                    <tr>
+                        <th>Species</th>
+                        <th>Common Name</th>
+                        <th>Primary Hosts</th>
+                    </tr>
+                    <tr>
+                        <td><em>Br. abortus</em></td>
+                        <td>Cattle brucellosis</td>
+                        <td>Cattle, buffalo</td>
+                    </tr>
+                    <tr>
+                        <td><em>Br. melitensis</em></td>
+                        <td>Goat/sheep brucellosis</td>
+                        <td>Goats, sheep, humans (highly pathogenic)</td>
+                    </tr>
+                    <tr>
+                        <td><em>Br. suis</em></td>
+                        <td>Swine brucellosis</td>
+                        <td>Pigs, wild boar</td>
+                    </tr>
+                    <tr>
+                        <td><em>Br. ovis</em></td>
+                        <td>Ovine epididymitis</td>
+                        <td>Sheep (rams)</td>
+                    </tr>
+                    <tr>
+                        <td><em>Br. canis</em></td>
+                        <td>Canine brucellosis</td>
+                        <td>Dogs</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "ABORT-Suis-Ovis-Canis" → Remember all 5 species: abortus, melitensis, suis, ovis, canis.
+                </div>
+
+                <h3>2. AFFECTED ANIMALS</h3>
+                <div class="definition-box">
+                    <strong>Primary hosts:</strong> Cattle, pigs, goats, sheep. The common manifestation is infection of the reproductive tract and abortion in these animals.
+                </div>
+
+                <p><strong>Other animals:</strong> May be associated with transmission (wildlife reservoirs, incidental hosts).</p>
+
+                <div class="warning-box">
+                    <strong>⚠️ IMPORTANT:</strong> Br. melitensis is the most pathogenic for humans (causes Malta fever, undulant fever).
+                </div>
+
+                <h3>3. MORPHOLOGY AND STAINING</h3>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Shape</td>
+                        <td>Bacilli or coccobacilli (short rods)</td>
+                    </tr>
+                    <tr>
+                        <td>Motility</td>
+                        <td>Non-motile (no flagella)</td>
+                    </tr>
+                    <tr>
+                        <td>Spore formation</td>
+                        <td>Do not form spores</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-negative</strong></td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "Brucella = Bad Rods NEGATIVE" → Gram-negative non-motile coccobacilli.
+                </div>
+
+                <h3>4. CULTURAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Detail</th>
+                    </tr>
+                    <tr>
+                        <td>Growth time</td>
+                        <td>Colonies appear after 48 hours on lab media</td>
+                    </tr>
+                    <tr>
+                        <td>Atmosphere requirement</td>
+                        <td><strong>5-10% CO₂</strong> enriched atmosphere (for Br. abortus, Br. ovis)</td>
+                    </tr>
+                    <tr>
+                        <td>Colony appearance</td>
+                        <td>Smooth, convex, non-pigmented colonies on nutrient agar</td>
+                    </tr>
+                    <tr>
+                        <td>Media used</td>
+                        <td>Serum dextrose agar (for bacteriological examination)</td>
+                    </tr>
+                </table>
+
+                <h3>5. ANTIGENS AND TOXINS</h3>
+                <table>
+                    <tr>
+                        <th>Antigen Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><strong>A antigen</strong></td>
+                        <td>Smooth-type lipopolysaccharide (LPS) antigen, heat-stable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M antigen</strong></td>
+                        <td>Polysaccharide antigen, heat-labile, species-specific</td>
+                    </tr>
+                </table>
+
+                <p><strong>Virulence factors:</strong> Brucella does NOT produce classical exotoxins. Virulence is mediated by:</p>
+                <ul>
+                    <li>Lipopolysaccharide (LPS) - resistant to complement and phagocytosis</li>
+                    <li>Ability to survive and replicate inside macrophages</li>
+                    <li>Inhibition of phagosome-lysosome fusion</li>
+                </ul>
+
+                <h3>6. EPIDEMIOLOGY AND PATHOGENESIS IN CATTLE</h3>
+                
+                <h4>Epidemiology</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Distribution</td>
+                        <td><strong>Worldwide</strong> occurrence; incidence 1-20% in various regions</td>
+                    </tr>
+                    <tr>
+                        <td>Source of infection</td>
+                        <td>Aborted fetuses, placenta, genital discharge (main sources)</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission routes</td>
+                        <td>Ingestion, coitus, artificial insemination, conjunctiva, skin penetration</td>
+                    </tr>
+                    <tr>
+                        <td>Age susceptibility</td>
+                        <td>Calves relatively insensitive; pregnant animals most susceptible</td>
+                    </tr>
+                </table>
+
+                <h4>Pathogenesis</h4>
+                <table>
+                    <tr>
+                        <th>Step</th>
+                        <th>Process</th>
+                    </tr>
+                    <tr>
+                        <td>Predilection site</td>
+                        <td><strong>Gravid uterus</strong> and <strong>fetus</strong> (erythritol-rich environment)</td>
+                    </tr>
+                    <tr>
+                        <td>Erythritol</td>
+                        <td>Saccharide alcohol in placenta/testicular tissue → stimulates <em>Brucella</em> growth</td>
+                    </tr>
+                    <tr>
+                        <td>Result</td>
+                        <td>Placentitis → abortion or premature birth</td>
+                    </tr>
+                    <tr>
+                        <td>Excretion pattern</td>
+                        <td>Intermittent excretion in milk, vaginal discharge, semen for months after parturition</td>
+                    </tr>
+                    <tr>
+                        <td>In bulls</td>
+                        <td>Testicle, seminal vesicle, epididymis infected → organisms in semen</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "ERYTHRITOL ATTRACTION" → Fetus and placenta contain erythritol which attracts and promotes <em>Brucella</em> multiplication.
+                </div>
+
+                <h3>7. SYMPTOMATOLOGY</h3>
+
+                <h4>In Cattle (<em>Br. abortus</em>)</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Abortion timing</td>
+                        <td>At 7th-8th month of pregnancy (or earlier with heavy exposure)</td>
+                    </tr>
+                    <tr>
+                        <td>Placenta</td>
+                        <td>Often retained at full term</td>
+                    </tr>
+                    <tr>
+                        <td>Recurrence</td>
+                        <td>Most animals abort <strong>only once</strong> although infection persists</td>
+                    </tr>
+                    <tr>
+                        <td>Herd pattern</td>
+                        <td>30-40% abortion in infected year, decreasing in subsequent years</td>
+                    </tr>
+                    <tr>
+                        <td>Introduction risk</td>
+                        <td>Bringing in susceptible animals can cause new abortion waves</td>
+                    </tr>
+                </table>
+
+                <h4>In Sheep (<em>Br. melitensis</em>)</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Abortion timing</td>
+                        <td>At 3rd-4th month of pregnancy (sometimes full term)</td>
+                    </tr>
+                    <tr>
+                        <td>Other signs</td>
+                        <td>Lameness, mastitis</td>
+                    </tr>
+                </table>
+
+                <h4>In Pigs (<em>Br. suis</em>)</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Main sign</td>
+                        <td><strong>Abortion</strong> (primary symptom)</td>
+                    </tr>
+                </table>
+
+                <h4>In Dogs (<em>Br. canis</em>)</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Main sign</td>
+                        <td>Early embryonic death or abortion at 5th day of pregnancy</td>
+                    </tr>
+                </table>
+
+                <div class="exam-tip">
+                    Differentiate abortion timing: <strong>Cattle</strong> (7-8 months) vs <strong>Sheep</strong> (3-4 months). This is a classic exam question!
+                </div>
+
+                <h3>8. DIAGNOSIS</h3>
+
+                <h4>Bacteriological Examination</h4>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Sample collection</td>
+                        <td>Milk, uterine discharge, aborted fetus tissues (liver, spleen, placenta)</td>
+                    </tr>
+                    <tr>
+                        <td>Culture media</td>
+                        <td><strong>Serum dextrose agar</strong> (enriched with 5-10% CO₂, 48h incubation)</td>
+                    </tr>
+                    <tr>
+                        <td>Colony appearance</td>
+                        <td>Smooth, small, convex, non-pigmented</td>
+                    </tr>
+                    <tr>
+                        <td>Identification</td>
+                        <td>Biochemical tests (urease positive), serotyping, PCR</td>
+                    </tr>
+                </table>
+
+                <h4>Serological Tests</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Test</th>
+                        <th>Full Name</th>
+                        <th>Principle</th>
+                        <th>Sample</th>
+                    </tr>
+                    <tr>
+                        <td><strong>SAT</strong></td>
+                        <td>Serum Agglutination Test</td>
+                        <td>Antigen-antibody agglutination</td>
+                        <td>Serum</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RBPT</strong></td>
+                        <td>Rose Bengal Plate Test</td>
+                        <td>Rapid slide agglutination</td>
+                        <td>Serum (screening)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MRT</strong></td>
+                        <td>Milk Ring Test</td>
+                        <td>Antibody in milk forms ring</td>
+                        <td>Milk (herd screening)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CFT</strong></td>
+                        <td>Complement Fixation Test</td>
+                        <td>Complement fixation by antigen-antibody complex</td>
+                        <td>Serum (confirmatory)</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ BIOHAZARD:</strong> <em>Brucella</em> is a <strong>Category B bioterrorism agent</strong> and highly infectious to laboratory personnel. Handle under BSL-3 conditions.
+                </div>
+
+                <h3>9. CONTROL AND PREVENTION</h3>
+                <table>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Test and Slaughter</strong></td>
+                        <td>Identify and eliminate infected animals (test-positive animals are culled)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vaccination</strong></td>
+                        <td><em>Br. abortus</em> Strain 19 vaccine (live attenuated) given to heifers before first pregnancy</td>
+                    </tr>
+                    <tr>
+                        <td>Vaccination timing</td>
+                        <td>One dose administered at 4-8 months of age (before 5th pregnancy)</td>
+                    </tr>
+                    <tr>
+                        <td>Management</td>
+                        <td>Isolation of aborting animals; proper disposal (burning/burying) of placenta and aborted fetuses</td>
+                    </tr>
+                    <tr>
+                        <td>Hygiene</td>
+                        <td>Sterilize contaminated materials; disinfect calving areas</td>
+                    </tr>
+                    <tr>
+                        <td>AI safety</td>
+                        <td>Use <em>Br. abortus</em>-free semen; disinfect equipment</td>
+                    </tr>
+                </table>
+
+                <h4>Vaccine Details (Strain 19)</h4>
+                <ul>
+                    <li>Live attenuated vaccine, administered subcutaneously</li>
+                    <li>Does not provide complete protection but significantly reduces abortion rates</li>
+                    <li>Can cause serological positivity (differentiate infected from vaccinated animals - DIVA strategy)</li>
+                    <li>Revaccination may be needed periodically</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>✅ KEY PREVENTION POINTS:</strong> Regular serological screening of herd, culling reactors, vaccination of young stock, and avoiding purchase of animals from infected herds.
+                </div>
+
+                <h3>10. PUBLIC HEALTH SIGNIFICANCE</h3>
+                <div class="highlight-box">
+                    <strong>Zoonotic alert:</strong> Humans acquire infection via:
+                    <ul>
+                        <li>Ingestion of unpasteurized milk, cheese, or undercooked meat</li>
+                        <li>Inhalation of aerosols (farmers, veterinarians, lab workers)</li>
+                        <li>Direct contact with infected animals or tissues</li>
+                    </ul>
+                    Human symptoms: Undulant fever ( Malta fever) — recurrent fever, sweats, malaise, arthralgia, orchitis.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LECTURE #3: SALMONELLOSIS -->
+        <section id="lec3" class="lecture-section">
+            <div class="lecture-header" onclick="toggleLecture(3)">
+                <h2>&#128214; Lecture #3: Salmonellosis</h2>
+                <div class="meta">Bacteriology | Multi-species Enteric Pathogen</div>
+            </div>
+            <div class="lecture-content" id="content-3">
+
+                <div class="highlight-box">
+                    <strong>🎯 DEFINITION:</strong> Salmonellosis is a bacterial disease caused by <em>Salmonella</em> species, characterized by gastrointestinal disease, septicemia, and abortion in various animal species. It has significant economic impact in both human and veterinary medicine.
+                </div>
+
+                <h3>1. SALMONELLOSIS IN HORSES</h3>
+
+                <h4>Causative Agents</h4>
+                <table>
+                    <tr>
+                        <th>Species</th>
+                        <th>Common Name</th>
+                    </tr>
+                    <tr>
+                        <td><em>Salmonella abortus equi</em></td>
+                        <td>Equine abortion agent</td>
+                    </tr>
+                    <tr>
+                        <td><em>Salmonella typhimurium</em></td>
+                        <td>Enteric/abortion agent</td>
+                    </tr>
+                </table>
+
+                <h4>Epidemiology and Pathogenesis</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Source of infection</td>
+                        <td>Pasture, food, water contaminated with fetal fluids, fetal membranes from abortions, or infected feces</td>
+                    </tr>
+                    <tr>
+                        <td>Susceptibility</td>
+                        <td>All age groups and both sexes become infected</td>
+                    </tr>
+                    <tr>
+                        <td>Pregnant mares</td>
+                        <td>Abort at end of gestation or give birth to dead foal</td>
+                    </tr>
+                </table>
+
+                <h4>Symptoms</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Primary sign</td>
+                        <td><strong>Abortion</strong> in pregnant mares</td>
+                    </tr>
+                    <tr>
+                        <td>GI signs</td>
+                        <td>Mild diarrhea, slight rise in temperature, inappetence</td>
+                    </tr>
+                </table>
+
+                <h4>In Newborn Foals</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Systemic infection</td>
+                        <td>Septicemia, weakness, diarrhea, pyrexia (fever)</td>
+                    </tr>
+                    <tr>
+                        <td>Respiratory</td>
+                        <td>Labored breathing</td>
+                    </tr>
+                    <tr>
+                        <td>Outcome</td>
+                        <td>Death within 2-3 days</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ NOTE:</strong> <em>S. abortus equi</em> is host-adapted to horses and primarily causes abortion. <em>S. typhimurium</em> can cause both enteritis and abortion in horses.
+                </div>
+
+                <h3>2. SALMONELLOSIS IN CATTLE</h3>
+
+                <h4>Causative Agents</h4>
+                <table>
+                    <tr>
+                        <th>Species</th>
+                        <th>Common Name</th>
+                    </tr>
+                    <tr>
+                        <td><em>Salmonella Dublin</em></td>
+                        <td>Cattle-adapted serovar (host-restricted)</td>
+                    </tr>
+                    <tr>
+                        <td><em>Salmonella typhimurium</em></td>
+                        <td>Broad-host-range serovar</td>
+                    </tr>
+                </table>
+
+                <h4>Epidemiology and Pathogenesis</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Distribution</td>
+                        <td><strong>Worldwide</strong> prevalence</td>
+                    </tr>
+                    <tr>
+                        <td>Age susceptibility</td>
+                        <td>Cattle of all ages affected; <strong>calves more susceptible</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Carrier state</td>
+                        <td>Adults may be symptomless carriers, excreting organisms <strong>intermittently</strong> in feces</td>
+                    </tr>
+                    <tr>
+                        <td>Environmental survival</td>
+                        <td>Organisms survive in feces for <strong>2-4 months</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Transmission</td>
+                        <td>Contaminated pasture, food, water with feces, aborted fetuses, or fetal membranes</td>
+                    </tr>
+                    <tr>
+                        <td>Herd pattern</td>
+                        <td>Few animals develop clinical signs; remainder become subclinically infected</td>
+                    </tr>
+                </table>
+
+                <h4>Predisposing Factors</h4>
+                <table>
+                    <tr>
+                        <th>Factor</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>Parasitic infection</td>
+                        <td>Gastrointestinal parasites damage intestinal mucosa, facilitating invasion</td>
+                    </tr>
+                    <tr>
+                        <td>Poor nutrition</td>
+                        <td>Malnutrition weakens immune system</td>
+                    </tr>
+                    <tr>
+                        <td>Stress of transport</td>
+                        <td>Shipping stress suppresses immunity, allowing opportunistic infection</td>
+                    </tr>
+                </table>
+
+                <h4>Symptoms</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Fever</td>
+                        <td>Rise in body temperature</td>
+                    </tr>
+                    <tr>
+                        <td>Appetite</td>
+                        <td>Inappetence (loss of appetite)</td>
+                    </tr>
+                    <tr>
+                        <td>Production</td>
+                        <td>Sudden drop in milk production</td>
+                    </tr>
+                    <tr>
+                        <td>Diarrhea</td>
+                        <td>May develop into dysentery (bloody diarrhea)</td>
+                    </tr>
+                    <tr>
+                        <td>Abortion</td>
+                        <td>Pregnant animals may abort</td>
+                    </tr>
+                    <tr>
+                        <td>Condition</td>
+                        <td>Emaciation, dehydration, abdominal pain</td>
+                    </tr>
+                </table>
+
+                <h4>Diagnosis</h4>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Clinical signs</td>
+                        <td>Fever, diarrhea, dehydration, drop in milk yield</td>
+                    </tr>
+                    <tr>
+                        <td>Bacteriological</td>
+                        <td>Isolation from feces, blood, or tissues (liver, spleen) on selective media (XLD, Hektoen)</td>
+                    </tr>
+                    <tr>
+                        <td>Serology</td>
+                        <td>Bacterial agglutination test (BAT) for antibodies</td>
+                    </tr>
+                    <tr>
+                        <td>PCR</td>
+                        <td>Rapid identification of <em>Salmonella</em> DNA in samples</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "DUBLIN = Dairy UC (you see) infection" → <em>S. Dublin</em> is cattle-adapted and causes systemic disease.
+                </div>
+
+                <h3>3. SALMONELLOSIS IN POULTRY</h3>
+
+                <h4>Pullorum Disease (Bacillary White Diarrhea)</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Causative agent</td>
+                        <td><em>Salmonella pullorum</em></td>
+                    </tr>
+                    <tr>
+                        <td>Distribution</td>
+                        <td>Worldwide; economically important in intensive poultry farming</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission routes</td>
+                        <td>
+                            1. Vertical: Infected ovaries → infected eggs → hatchery spread<br>
+                            2. Dried fluff (spicules) from infected chicks<br>
+                            3. Feces of infected chicks<br>
+                            4. Respiratory route (inhalation)
+                        </td>
+                    </tr>
+                </table>
+
+                <h4>Symptoms of Pullorum Disease</h4>
+                <table>
+                    <tr>
+                        <th>Age Group</th>
+                        <th>Signs</th>
+                    </tr>
+                    <tr>
+                        <td>Young chicks</td>
+                        <td>Highly susceptible post-hatching; 95% mortality; sleepy, cold, huddle near heat; some show nervous symptoms; vent covered with adherent fecal mass; white diarrhea</td>
+                    </tr>
+                    <tr>
+                        <td>Growing chicks</td>
+                        <td>Less affected; slow growth rate</td>
+                    </tr>
+                    <tr>
+                        <td>Adults</td>
+                        <td>Usually no symptoms but lowered egg production</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🔴 MORTALITY:</strong> Pullorum disease causes up to 95% mortality in young chicks, making it a devastating disease in poultry operations.
+                </div>
+
+                <h4>Fowl Typhoid (<em>S. gallinarum</em>)</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Causative agent</td>
+                        <td><em>Salmonella gallinarum</em></td>
+                    </tr>
+                    <tr>
+                        <td>Affected birds</td>
+                        <td>Growing and adult birds (unlike Pullorum which affects chicks)</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission</td>
+                        <td>Same cycle as Pullorum: ingestion, conjunctiva as portal of entry</td>
+                    </tr>
+                    <tr>
+                        <td>Pattern</td>
+                        <td>Acute form: high mortality; Chronic form: lower mortality (~50% in acute cases)</td>
+                    </tr>
+                    <tr>
+                        <td>Excretion</td>
+                        <td>Intermittent shedding in feces</td>
+                    </tr>
+                    <tr>
+                        <td>Survival</td>
+                        <td>Organisms survive in litter for months</td>
+                    </tr>
+                </table>
+
+                <h4>Symptoms of Fowl Typhoid</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>General</td>
+                        <td>Listlessness, depression</td>
+                    </tr>
+                    <tr>
+                        <td>Diarrhea</td>
+                        <td>Greenish diarrhea</td>
+                    </tr>
+                    <tr>
+                        <td>Comb/wattles</td>
+                        <td>Purple discoloration (cyanosis)</td>
+                    </tr>
+                </table>
+
+                <div class="comparison-table">
+                    <h4>Pullorum vs Fowl Typhoid — Quick Comparison</h4>
+                    <table>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Pullorum Disease</th>
+                            <th>Fowl Typhoid</th>
+                        </tr>
+                        <tr>
+                            <td>Agent</td>
+                            <td><em>S. pullorum</em></td>
+                            <td><em>S. gallinarum</em></td>
+                        </tr>
+                        <tr>
+                            <td>Age affected</td>
+                            <td>Young chicks (0-3 weeks)</td>
+                            <td>Growing/adult birds</td>
+                        </tr>
+                        <tr>
+                            <td>Mortality</td>
+                            <td>Up to 95% in chicks</td>
+                            <td>High in acute, ~50%</td>
+                        </tr>
+                        <tr>
+                            <td>Diarrhea color</td>
+                            <td>White</td>
+                            <td>Greenish</td>
+                        </tr>
+                        <tr>
+                            <td>Adult symptoms</td>
+                            <td>None (just low egg production)</td>
+                            <td>Listless, purple comb/wattles</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>4. GENERAL CHARACTERISTICS OF SALMONELLA</h3>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td>Gram-negative rods</td>
+                    </tr>
+                    <tr>
+                        <td>Motility</td>
+                        <td>Motile (peritrichous flagella) except <em>S. pullorum</em> and <em>S. gallinarum</em> (non-motile)</td>
+                    </tr>
+                    <tr>
+                        <td>Culture media</td>
+                        <td>Selective media: XLD, Hektoen enteric agar, Salomonella-Shigella (SS) agar</td>
+                    </tr>
+                    <tr>
+                        <td>Colony appearance</td>
+                        <td>Non-lactose fermenting (colorless colonies on MacConkey)</td>
+                    </tr>
+                    <tr>
+                        <td>Biochemical</td>
+                        <td>H2S production (black centers on selective agar), urease negative, citrate positive</td>
+                    </tr>
+                    <tr>
+                        <td>Serotyping</td>
+                        <td>Kauffman-White scheme: O (somatic) + H (flagellar) antigens</td>
+                    </tr>
+                </table>
+
+                <div class="exam-tip">
+                    Remember: <strong>S. pullorum</em> and <em>S. gallinarum</em> are non-motile; all other <em>Salmonella</em> are motile. Also, H2S production is a key diagnostic feature.
+                </div>
+
+                <h3>5. CONTROL AND PREVENTION</h3>
+                <table>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Horses</th>
+                        <th>Cattle</th>
+                        <th>Poultry</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Management</strong></td>
+                        <td>Remove aborting mares; disinfect environment</td>
+                        <td>Cull carriers; improve hygiene; separate sick animals</td>
+                        <td>Remove and destroy infected flocks; thorough cleaning and disinfection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biosecurity</strong></td>
+                        <td>Prevent fecal contamination of feed/water</td>
+                        <td>Rodent control; prevent cross-contamination</td>
+                        <td>Egg sanitation; incubator hygiene; prevent wild bird access</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vaccination</strong></td>
+                        <td>Not commonly used</td>
+                        <td>Available for <em>S. Dublin</em></td>
+                        <td>Live attenuated vaccines (Feed/water) for <em>S. Pullorum/Gallinarum</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Testing</strong></td>
+                        <td>Bacteriological culture</td>
+                        <td>Serology (BAT), fecal culture</td>
+                        <td>Pullorum test (serum agglutination), fecal culture</td>
+                    </tr>
+                </table>
+
+                <div class="success-box">
+                    <strong>✅ KEY POINTS:</strong> Salmonellosis control relies heavily on good husbandry, biosecurity, and culling carriers. In poultry, test-and-cull programs have successfully eradicated Pullorum disease from many countries.
+                </div>
+
+                <h3>6. PUBLIC HEALTH SIGNIFICANCE</h3>
+                <div class="highlight-box">
+                    <strong>⚠️ ZOONOTIC ALERT:</strong> Many <em>Salmonella</em> serovars (especially <em>S. typhimurium</em>) are significant human pathogens causing foodborne gastroenteritis. Transmission to humans occurs via:
+                    <ul>
+                        <li>Consumption of contaminated poultry, eggs, meat, milk</li>
+                        <li>Direct contact with infected animals or contaminated environments</li>
+                    </ul>
+                    Human symptoms: Nausea, vomiting, diarrhea (may be bloody), fever, abdominal cramps. Usually self-limiting (2-7 days) but can be fatal in immunocompromised, infants, elderly.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LECTURE #4: LISTERIOSIS -->
+        <section id="lec4" class="lecture-section">
+            <div class="lecture-header" onclick="toggleLecture(4)">
+                <h2>&#128214; Lecture #4: Listeriosis (Listeria spp.)</h2>
+                <div class="meta">Bacteriology | Zoonotic Pathogen causing Encephalitis and Abortion</div>
+            </div>
+            <div class="lecture-content" id="content-4">
+
+                <div class="highlight-box">
+                    <strong>🎯 DEFINITION:</strong> Listeriosis is a bacterial disease caused by <em>Listeria monocytogenes</em>, a Gram-positive, motile rod that causes encephalitis (circling disease), septicemia, and abortion in animals. It is also an important foodborne zoonosis.
+                </div>
+
+                <h3>1. CAUSATIVE AGENT</h3>
+                <table>
+                    <tr>
+                        <th>Species</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><em>Listeria monocytogenes</td>
+                        <td>Only pathogenic species in genus <em>Listeria</em>; causes listeriasis ("circling disease")</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "LISTERIA = Little STRIAE" → Remember it's a small rod that can form short chains.
+                </div>
+
+                <h3>2. DISTRIBUTION IN NATURE</h3>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Habitat</td>
+                        <td><strong>Worldwide</strong> distributed; extensive host range</td>
+                    </tr>
+                    <tr>
+                        <td>Reservoirs</td>
+                        <td>Soil, water, silage, decaying vegetation; gastrointestinal tract of many animals (as commensal)</td>
+                    </tr>
+                    <tr>
+                        <td>Survival</td>
+                        <td>Can survive in environment for long periods; grows in refrigeration temperatures (psychrotrophic)</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ IMPORTANT:</strong> <em>L. monocytogenes</em> is a major foodborne pathogen in humans (from contaminated dairy, meat, ready-to-eat foods). It is a significant zoonosis.
+                </div>
+
+                <h3>3. MORPHOLOGY AND STAINING</h3>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Shape</td>
+                        <td>Short rods (bacilli), may appear in pairs or short chains</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-positive</strong> (but may appear Gram-variable or negative in older cultures)</td>
+                    </tr>
+                    <tr>
+                        <td>Motility</td>
+                        <td><strong>Motile</strong> (peritrichous flagella at room temperature; tumbling motility)</td>
+                    </tr>
+                    <tr>
+                        <td>Spore formation</td>
+                        <td>Non-spore-forming</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "Little MOTILE rods" → Listeria is motile (unlike many other Gram-positive cocci/rods).
+                </div>
+
+                <h3>4. CULTURAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Detail</th>
+                    </tr>
+                    <tr>
+                        <td>Oxygen requirement</td>
+                        <td>Facultative anaerobe; grows well under <strong>aerobic</strong> conditions</td>
+                    </tr>
+                    <tr>
+                        <td>Growth temperature</td>
+                        <td>Wide range: 4°C to 45°C (psychrotrophic — grows at refrigeration temps)</td>
+                    </tr>
+                    <tr>
+                        <td>Colony appearance</td>
+                        <td>Smooth, round, <strong>bluish-grey</strong> colonies on ordinary media</td>
+                    </tr>
+                    <tr>
+                        <td>Blood agar</td >
+                        <td><strong>Narrow zone of complete hemolysis</strong> (beta-hemolysis)</td>
+                    </tr>
+                    <tr>
+                        <td>Media</td>
+                        <td>Grows on nutrient agar, blood agar, brain heart infusion agar</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>❄️ PSYCHROTROPHIC:</strong> Ability to grow at 4°C makes <em>Listeria</em> a concern in refrigerated ready-to-eat foods (soft cheeses, deli meats).
+                </div>
+
+                <h3>5. ANTIGENS AND TOXINS</h3>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>O antigen</strong></td>
+                        <td>Somatic (cell wall) antigen; heat-stable; used for serotyping</td>
+                    </tr>
+                    <tr>
+                        <td><strong>H antigen</strong></td>
+                        <td>Flagellar antigen; heat-labile; phase variation possible</td>
+                    </tr>
+                </table>
+
+                <h4>Virulence Factors</h4>
+                <ul>
+                    <li><strong>Listeriolysin O (LLO)</strong> — cholesterol-dependent cytolysin that allows escape from phagosome into cytoplasm</li>
+                    <li><strong>ActA protein</strong> — promotes actin-based motility (cell-to-cell spread without extracellular phase)</li>
+                    <li><strong>Internalins</strong> — mediate invasion of host cells (cross intestinal/epithelial barriers)</li>
+                    <li><strong>Catalase and superoxide dismutase</strong> — resist oxidative killing by phagocytes</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ KEY TOXIN:</strong> Listeriolysin O (LLO) is the primary virulence factor enabling intracellular survival and spread.
+                </div>
+
+                <h3>6. EPIDEMIOLOGY AND PATHOGENESIS</h3>
+
+                <h4>Epidemiology</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Hosts</td>
+                        <td>Cattle, sheep, goats, buffaloes, horses; occasional cases in pigs, dogs, wildlife</td>
+                    </tr>
+                    <tr>
+                        <td>Seasonality</td>
+                        <td>Higher incidence in <strong>winter months</strong> (linked to silage feeding)</td>
+                    </tr>
+                    <tr>
+                        <td>Herd pattern</td>
+                        <td>Few animals in herd show clinical signs (sporadic disease)</td>
+                    </tr>
+                    <tr>
+                        <td>Sources</td>
+                        <td><strong>Infected silage</strong> (poorly fermented, moldy); cattle ticks; contaminated feed/water</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission</td>
+                        <td>Ingestion of contaminated material; possibly via skin/ mucous membrane breaches</td>
+                    </tr>
+                </table>
+
+                <h4>Pathogenesis</h4>
+                <table>
+                    <tr>
+                        <th>Step</th>
+                        <th>Process</th>
+                    </tr>
+                    <tr>
+                        <td>Invasion</td>
+                        <td>After ingestion, crosses intestinal barrier using internalins</td>
+                    </tr>
+                    <tr>
+                        <td>Systemic spread</td>
+                        <td>Enters bloodstream → disseminates to target organs</td>
+                    </tr>
+                    <tr>
+                        <td>Predilection sites</td>
+                        <td><strong>CNS (brain)</strong>, <strong>gravida uterus</strong>, <strong>liver</strong>, <strong>spleen</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Encephalitis</td>
+                        <td>Crosses blood-brain barrier → brain stem encephalitis (circling, cranial nerve deficits)</td>
+                    </tr>
+                    <tr>
+                        <td>Abortion</td>
+                        <td>Placental infection → necrosis → fetal death and abortion</td>
+                    </tr>
+                    <tr>
+                        <td>Hepatic</td>
+                        <td>Multifocal hepatic necrosis in septicemic form</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "LISTERIA LOVES LIVER & BRAIN" → Predilection sites: liver (hepatic necrosis) and brain (encephalitis, circling).
+                </div>
+
+                <h3>7. SYMPTOMATOLOGY</h3>
+
+                <h4>Encephalitis Form (Circling Disease)</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Neck stiffness</td>
+                        <td>Stiffness of neck muscles</td>
+                    </tr>
+                    <tr>
+                        <td>Head tilt</td>
+                        <td>Head held to one side (lateral flexion)</td>
+                    </tr>
+                    <tr>
+                        <td>Ataxia</td>
+                        <td>Incoordination of limbs; circling (usually toward affected side)</td>
+                    </tr>
+                    <tr>
+                        <td>Facial paralysis</td>
+                        <td>Paralysis of jaw and pharynx muscles</td>
+                    </tr>
+                    <tr>
+                        <td>Tongue</td>
+                        <td>Protrusion of tongue; difficulty swallowing; excessive salivation</td>
+                    </tr>
+                    <tr>
+                        <td>Recumbency</td>
+                        <td>Unable to stand; when down, shows spasmodic paddling of hind limbs</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🔴 CIRCLING:</strong> The characteristic circling to one side (usually toward the side of the brain lesion) is pathognomonic for listerial encephalitis.
+                </div>
+
+                <h4>Abortion Form</h4>
+                <table>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Timing</td>
+                        <td>Abortion occurs at <strong>4-8 months</strong> of pregnancy in cattle and sheep</td>
+                    </tr>
+                    <tr>
+                        <td>Other signs</td>
+                        <td>May be preceded by fever, listlessness; no diarrhea typically</td>
+                    </tr>
+                    <tr>
+                        <td>Fetal infection</td>
+                        <td>Fetus often septicemic; liver may show microabscesses</td>
+                    </tr>
+                </table>
+
+                <h4>Septicemic Form</h4>
+                <ul>
+                    <li>Occurs in newborn kids/lambs/calves</li>
+                    <li>Fever, weakness, respiratory distress</li>
+                    <li>Multifocal hepatic necrosis</li>
+                    <li>High mortality in neonates</li>
+                </ul>
+
+                <h3>8. DIAGNOSIS</h3>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Clinical signs</td>
+                        <td>Circling behavior, cranial nerve deficits, fever — highly suggestive</td>
+                    </tr>
+                    <tr>
+                        <td>Histopathology</td>
+                        <td>Brain: microabscesses in brain stem, perivascular cuffing, necrosis</td>
+                    </tr>
+                    <tr>
+                        <td>Bacteriology</td>
+                        <td>Isolation from brain, liver, placenta, fetal tissues on blood agar (beta-hemolytic grey colonies)</td>
+                    </tr>
+                    <tr>
+                        <td>Biochemical</td>
+                        <td>Catalase +, oxidase -, esculin +, tumbling motility at 22-25°C</td>
+                    </tr>
+                    <tr>
+                        <td>Serology</td>
+                        <td>Serological examination (ELISA, complement fixation) — but limited value due to environmental exposure</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "TUMBLING at room temp" → Listeria shows characteristic tumbling motility at 22-25°C (not at 37°C).
+                </div>
+
+                <h3>9. CONTROL AND PREVENTION</h3>
+                <table>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Slaughter</strong></td>
+                        <td>All clinically affected animals should be <strong>slaughtered immediately</strong> (no treatment)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disposal</strong></td>
+                        <td>Carcasses, litter, bedding should be <strong>buried or burned</strong> (not used for fertilizer)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disinfection</strong></td>
+                        <td>Buildings, pens, equipment thoroughly disinfected (use phenolic or iodine disinfectants)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Silage management</td></td>
+                        <td>Avoid silage with pH > 4.5; discard spoiled, moldy, or heating silage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Feed/water</strong></td>
+                        <td>Ensure clean water; avoid feeding contaminated pasture or spoiled feed</td>
+                    </tr>
+                </table>
+
+                <h4>Antibiotic Therapy (if detected early)</h4>
+                <ul>
+                    <li>High-dose penicillin G (IV/IM) is drug of choice</li>
+                    <li>Ampicillin or amoxicillin also effective</li>
+                    <li>Combination with gentamicin may be used for severe cases</li>
+                    <li>Treatment generally not recommended for food animals due to public health risk and poor prognosis in neurologic cases</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>✅ KEY PREVENTION:</strong> Proper silage making (acidic, anaerobic conditions) is the most important preventive measure. Avoid feeding spoiled silage, especially to pregnant animals.
+                </div>
+
+                <h3>10. PUBLIC HEALTH SIGNIFICANCE</h3>
+                <div class="highlight-box">
+                    <strong>⚠️ MAJOR ZOONOSIS:</strong> <em>Listeria monocytogenes</em> is a serious foodborne pathogen in humans. Transmission occurs via:
+                    <ul>
+                        <li>Consumption of contaminated foods: soft cheeses, unpasteurized milk, deli meats, hot dogs, raw vegetables</li>
+                        <li>Can multiply at refrigeration temperatures (4°C) — danger in ready-to-eat foods</li>
+                    </ul>
+                    Human disease: Listeriosis — septicemia, meningitis, encephalitis, miscarriage. High-risk groups: pregnant women (can cause fetal loss), neonates, elderly, immunocompromised. Mortality up to 20-30% in invasive cases.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LECTURE #5: ESCHERICHIA COLI -->
+        <section id="lec5" class="lecture-section">
+            <div class="lecture-header" onclick="toggleLecture(5)">
+                <h2>&#128214; Lecture #5: Escherichia coli</h2>
+                <div class="meta">Bacteriology | Normal Flora & Pathogenic Strains</div>
+            </div>
+            <div class="lecture-content" id="content-5">
+
+                <div class="highlight-box">
+                    <strong>🎯 DEFINITION:</strong> <em>Escherichia coli</em> is a Gram-negative, facultatively anaerobic rod of the family <em>Enterobacteriaceae</em>. While most strains are harmless commensals of the intestinal tract, pathogenic strains cause a wide range of diseases in animals and humans, including diarrhea, septicemia, and urinary tract infections.
+                </div>
+
+                <h3>1. GENERAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Family</td>
+                        <td><em>Enterobacteriaceae</em></td>
+                    </tr>
+                    <tr>
+                        <td>Discovery</td>
+                        <td>Discovered by Theodor Escherich (1885–86); originally named <em>Bacterium coli</em></td>
+                    </tr>
+                    <tr>
+                        <td>Distribution</td>
+                        <td>Normal inhabitant of intestinal tract of warm-blooded animals; can become pathogenic under certain conditions</td>
+                    </tr>
+                    <tr>
+                        <td>Related genera</td>
+                        <td><em>Shigella</em>, <em>Salmonella</em>, <em>Klebsiella</em> (other Enterobacteriaceae)</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "ESCHERICHIA = Escherich's COLIn" → Named after discoverer Theodor Escherich; commonly found in colon.
+                </div>
+
+                <h3>2. MORPHOLOGY AND STAINING</h3>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Shape</td>
+                        <td>Short rods (bacilli), may occur singly or in pairs</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-negative</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Spore formation</td>
+                        <td>Non-spore-forming</td>
+                    </tr>
+                    <tr>
+                        <td>Motility</td>
+                        <td>Most strains <strong>motile</strong> with peritrichous flagella (sluggish motility); some strains non-motile</td>
+                    </tr>
+                    <tr>
+                        <td>Capsule</td>
+                        <td>Some pathogenic strains develop capsules, producing mucoid colonies</td>
+                    </tr>
+                </table>
+
+                <h3>3. CULTURAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Detail</th>
+                    </tr>
+                    <tr>
+                        <td>Oxygen</td>
+                        <td><strong>Aerobic and facultative anaerobic</strong> (grows with or without oxygen)</td>
+                    </tr>
+                    <tr>
+                        <td>Growth media</td>
+                        <td>Grows on ordinary lab media (no blood/serum required)</td>
+                    </tr>
+                    <tr>
+                        <td>Optimum temperature</td>
+                        <td>37°C (range: 20–44°C)</td>
+                    </tr>
+                    <tr>
+                        <td>Colony appearance</td>
+                        <td>Smooth, moist, grey-white colonies on nutrient agar</td>
+                    </tr>
+                    <tr>
+                        <td>Eosin Methylene Blue (EMB)</td>
+                        <td><strong>Metallic green sheen</strong> (characteristic of strong lactose fermenters like <em>E. coli</em>)</td>
+                    </tr>
+                    <tr>
+                        <td>MacConkey's Agar</td>
+                        <td><strong>Pink colonies</strong> (lactose fermenter → acid production changes pH indicator)</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🔬 KEY CULTURE ID:</strong> Metallic green sheen on EMB is classic for <em>E. coli</em>. Pink on MacConkey confirms lactose fermentation.
+                </div>
+
+                <h3>4. BIOCHEMICAL REACTIONS</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Test</th>
+                        <th>Result for <em>E. coli</em></th>
+                        <th>Interpretation</th>
+                    </tr>
+                    <tr>
+                        <td>Glucose fermentation</td>
+                        <td>Positive (acid + gas)</td>
+                        <td>Produces acid and gas</td>
+                    </tr>
+                    <tr>
+                        <td>Lactose fermentation</td>
+                        <td>Positive (acid + gas)</td>
+                        <td>Ferments lactose → pink on MacConkey</td>
+                    </tr>
+                    <tr>
+                        <td>Mannitol fermentation</td>
+                        <td>Positive</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Indole</strong></td>
+                        <td><strong>Positive</strong> (red ring with Kovac's)</td>
+                        <td>Tryptophanase enzyme present</td>
+                    </tr>
+                    <tr>
+                        <td><strong>H₂S</strong></td>
+                        <td><strong>Negative</strong></td>
+                        <td>No black colonies on TSI/TSC</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Citrate</strong></td>
+                        <td><strong>Negative</strong></td>
+                        <td>Cannot use citrate as sole C-source (green on Simmons citrate)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Voges-Proskauer (VP)</strong></td>
+                        <td><strong>Negative</strong></td>
+                        <td>No acetoin production</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Methyl Red (MR)</strong></td>
+                        <td><strong>Positive</strong></td>
+                        <td>Strong acid from glucose (mixed acid fermentation)</td>
+                    </tr>
+                </table>
+
+                <div class="exam-tip">
+                    IMViC pattern for <em>E. coli</em>: <strong>++--</strong> (Indole +, MR +, VP -, Citrate -). This distinguishes it from other coliforms like <em>Enterobacter</em> (- - + +).
+                </div>
+
+                <h3>5. ANTIGENS AND TOXINS</h3>
+                <table>
+                    <tr>
+                        <th>Antigen Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><strong>O antigen</strong></td>
+                        <td>Somatic (cell wall) antigen; heat-stable polysaccharide-phospholipid-protein complex; 146 different serotypes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>H antigen</strong></td>
+                        <td>Flagellar antigen; heat-labile protein; 49 serotypes; phase variation possible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>K antigen</strong></td>
+                        <td>Capsular/envelope antigen; polysaccharide; 91 types; associated with virulence (mucoid colonies)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fimbrial antigen</strong></td>
+                        <td>Fimbriae (pili) — small filaments for adhesion</td>
+                    </tr>
+                </table>
+
+                <h4>Pathogenic Toxins</h4>
+                <table>
+                    <tr>
+                        <th>Toxin</th>
+                        <th>Function</th>
+                        <th>Associated Strains</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Enterotoxin</strong></td>
+                        <td>Stimulates intestinal secretion → diarrhea</td>
+                        <td>ETEC (diarrheagenic)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shiga-like toxin (Verotoxin)</strong></td>
+                        <td>Inhibits protein synthesis; damages vascular endothelium → hemorrhagic colitis, HUS</td>
+                        <td>EHEC (e.g., O157:H7)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Colicins</strong></td>
+                        <td>Bacteriocins — inhibit other bacteria</td>
+                        <td>Many strains</td>
+                    </tr>
+                </table>
+
+                <h3>6. PATHOGENICITY AND CLASSIFICATION OF STRAINS</h3>
+                <table>
+                    <tr>
+                        <th>Abbreviation</th>
+                        <th>Full Name</th>
+                        <th>Key Virulence Factors</th>
+                        <th>Disease in Animals</th>
+                    </tr>
+                    <tr>
+                        <td><strong>ETEC</strong></td>
+                        <td>Enterotoxigenic <em>E. coli</em></td>
+                        <td>Enterotoxins (LT, ST) → fluid secretion</td>
+                        <td>Neonatal diarrhea (calves, piglets, lambs)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EPEC</strong></td>
+                        <td>Enteropathogenic <em>E. coli</em></td>
+                        <td>Adhesion factors (intimin) → attaching/effacing lesions</td>
+                        <td>Infantile diarrhea (especially in humans)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EHEC</strong></td>
+                        <td>Enterohemorrhagic <em>E. coli</em></td>
+                        <td>Shiga toxin + attaching/effacing</td>
+                        <td>Hemorrhagic colitis, HUS (O157:H7 — zoonotic)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EIEC</strong></td>
+                        <td>Enteroinvasive <em>E. coli</em></td>
+                        <td>Invades intestinal mucosa (like <em>Shigella</em>)</td>
+                        <td>Dysentery-like illness</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UPEC</strong></td>
+                        <td>Uropathogenic <em>E. coli</em></td>
+                        <td>Adhesins (P-pili), toxins, iron acquisition</td>
+                        <td>Urinary tract infections</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ IMPORTANT:</strong> ETEC is the most common cause of diarrhea in newborn calves (colibacillosis). EHEC O157:H7 is a major foodborne zoonosis.
+                </div>
+
+                <h3>7. E. COLI INFECTIONS IN ANIMALS</h3>
+
+                <h4>In Horses</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Affected group</td>
+                        <td>Newborn foals</td>
+                    </tr>
+                    <tr>
+                        <td>Disease name</td>
+                        <td>"Joint Ill" or "Sleepy Foal Disease" (septicemic form)</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission</td>
+                        <td>Ingestion of contaminated milk/colostrum or environment</td>
+                    </tr>
+                    <tr>
+                        <td>Symptoms</td>
+                        <td>Elevated body temperature, diarrhea, weakness, prostration; may proceed to septicemia and death</td>
+                    </tr>
+                </table>
+
+                <h4>In Cattle — Colibacillosis in Calves</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Epidemiology</td>
+                        <td>High economic impact; diarrheic calves excrete 24× more <em>E. coli</em> than healthy ones</td>
+                    </tr>
+                    <tr>
+                        <td>Immunity</td>
+                        <td><strong>Colostrum critical</strong> — provides passive antibodies; must be fed within first 48 hours of birth</td>
+                    </tr>
+                    <tr>
+                        <td>Passive immunity note</td>
+                        <td>Heterologous antibodies (non-matching) provide reduced/absent protection</td>
+                    </tr>
+                    <tr>
+                        <td>Symptoms — Acute</td>
+                        <td>Scouring (profuse diarrhea), weakness, prostration, rapid death</td>
+                    </tr>
+                    <tr>
+                        <td>Symptoms — Less acute</td>
+                        <td>Calf listless, fails to suck, develops diarrhea</td>
+                    </tr>
+                    <tr>
+                        <td>Feces</td>
+                        <td><strong>Grayish-white ("White Scour")</strong> with unpleasant fetid odor</td>
+                    </tr>
+                    <tr>
+                        <td>Other signs</td>
+                        <td>Tenderness/swelling of joints (septicemic spread), pneumonia, abdominal pain</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🔴 WHITE SCOUR:</strong> Grayish-white, fetid-smelling diarrhea in calves is characteristic of colibacillosis.
+                </div>
+
+                <h3>8. DIAGNOSIS</h3>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Clinical</td>
+                        <td>Diarrhea in neonates (<48 hours), weakness, dehydration, "White Scour" in calves</td>
+                    </tr>
+                    <tr>
+                        <td>Bacteriological</td>
+                        <td>Isolation of <em>E. coli</em> from organs (liver, spleen, brain in septicemic cases) or intestinal tract/feces</td>
+                    </tr>
+                    <tr>
+                        <td>Culture media</td>
+                        <td>EMB (metallic green sheen), MacConkey (pink colonies), nutrient agar (smooth moist)</td>
+                    </tr>
+                    <tr>
+                        <td>Biochemical confirmation</td>
+                        <td>IMViC: ++-- (Indole+, MR+, VP-, Citrate-); lactose fermenter (acid + gas)</td>
+                    </tr>
+                </table>
+
+                <h3>9. CONTROL AND PREVENTION</h3>
+                <table>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Colostrum feeding</strong></td>
+                        <td>First feeding <strong>immediately after birth</strong> (within 2 hours); ensure high-quality colostrum with adequate antibody titer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hygiene</strong></td>
+                        <td>Clean, dry bedding; disinfection of calving pens; prevent fecal-oral contamination</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Antisera</strong></td>
+                        <td>Injection of specific <em>E. coli</em> antisera (results variable, not always reliable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Antibiotics</strong></td>
+                        <td>Oxytetracycline, Streptomycin (but resistance common); use based on sensitivity testing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vaccination</strong></td>
+                        <td>Vaccines available for pregnant dams (to boost colostral antibodies) and calves (oral/routine)</td>
+                    </tr>
+                </table>
+
+                <div class="success-box">
+                    <strong>✅ KEY PREVENTION:</strong> The single most important factor is <strong>timely colostrum feeding</strong> within first 2 hours of birth. Combine with good hygiene and vaccination.
+                </div>
+
+                <h3>10. PUBLIC HEALTH SIGNIFICANCE</h3>
+                <div class="highlight-box">
+                    <strong>⚠️ ZOONOTIC ALERT:</strong> Pathogenic <em>E. coli</em> strains are significant human pathogens:
+                    <ul>
+                        <li><strong>EHEC O157:H7</strong> — causes hemorrhagic colitis, hemolytic uremic syndrome (HUS); transmitted via contaminated beef (undercooked), raw milk, water, produce</li>
+                        <li><strong>ETEC</strong> — traveler's diarrhea; contaminated food/water</li>
+                        <li>Vancomycin-resistant <em>E. coli</em> (VRE) and extended-spectrum beta-lactamase (ESBL) strains emerging</li>
+                    </ul>
+                    Human symptoms: watery → bloody diarrhea, abdominal cramps, HUS (renal failure), fever. Severe in children, elderly, immunocompromised.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LECTURE #6: STREPTOCOCCUS SPP. -->
+        <section id="lec6" class="lecture-section">
+            <div class="lecture-header" onclick="toggleLecture(6)">
+                <h2>&#128214; Lecture #6: Streptococcus spp. (Mastitis, Strangles)</h2>
+                <div class="meta">Bacteriology | Gram-Positive Cocci in Chains</div>
+            </div>
+            <div class="lecture-content" id="content-6">
+
+                <div class="highlight-box">
+                    <strong>🎯 DEFINITION:</strong> <em>Streptococcus</em> species are Gram-positive, spherical bacteria that occur in pairs or chains. They are common commensals but include important veterinary pathogens causing mastitis in cattle and strangles in horses.
+                </div>
+
+                <h3>1. INTRODUCTION</h3>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Morphology</td>
+                        <td>Spherical or oval forms (cocci) occurring in pairs or chains</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-positive</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Spore formation</td>
+                        <td>Non-spore-forming</td>
+                    </tr>
+                    <tr>
+                        <td>Natural habitat</td>
+                        <td>Normal flora of skin, mouth, nose, throat, intestinal and genital tracts of animals and humans</td>
+                    </tr>
+                    <tr>
+                        <td>Pathogenicity</td>
+                        <td>Cause pyogenic infections: bovine mastitis, strangles (horses), and other suppurative infections</td>
+                    </tr>
+                </table>
+
+                <h4>Hemolysis Types on Blood Agar</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Appearance</th>
+                        <th>Significance</th>
+                    </tr>
+                    <tr>
+                        <td><strong>β-haemolytic</strong></td>
+                        <td>Complete hemolysis — clear zone around colony</td>
+                        <td>Pathogenic streptococci (Lancefield groups A–V); pyogenic infections</td>
+                    </tr>
+                    <tr>
+                        <td><strong>α-haemolytic</strong></td>
+                        <td>Partial hemolysis — greenish discoloration (due to hydrogen peroxide)</td>
+                        <td><em>Streptococcus viridans</em> group; oral flora, subacute bacterial endocarditis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>γ (non-haemolytic)</strong></td>
+                        <td>No hemolysis</td>
+                        <td>Many commensals; some opportunists</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ LANCEFIELD GROUPING:</strong> β-haemolytic streptococci are classified serologically into groups A–V based on C-carbohydrate (group-specific polysaccharide) antigens in the cell wall. Important veterinary pathogens: Group A (<em>S. pyogenes</em>), Group B (<em>S. agalactiae</em>), Group C (<em>S. dysgalactiae</em>), Group G.
+                </div>
+
+                <h3>2. DISTRIBUTION IN NATURE</h3>
+                <p>Ubiquitous — found worldwide on skin and mucous membranes of animals and humans: mouth, nose, throat, intestinal tract, and genital tract.</p>
+
+                <h3>3. MORPHOLOGY AND STAINING</h3>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Shape</td>
+                        <td>Spherical or oval cocci; in pairs (diplococci) or short/long chains</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-positive</strong> (purple)</td>
+                    </tr>
+                    <tr>
+                        <td>Spores</td>
+                        <td>Non-spore-forming</td>
+                    </tr>
+                    <tr>
+                        <td>Capsule</td>
+                        <td>Some species have capsules (e.g., <em>Str. bovis</em> group D — mucoid colonies)</td>
+                    </tr>
+                    <tr>
+                        <td>Motility</td>
+                        <td>Non-motile (rare exceptions)</td>
+                    </tr>
+                </table>
+
+                <h3>4. CULTURAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Oxygen</td>
+                        <td>Aerobes or facultative anaerobes; some strict anaerobes (less important)</td>
+                    </tr>
+                    <tr>
+                        <td>Growth media</td>
+                        <td>Grow poorly on ordinary nutrient agar; better on enriched media with blood, serum, or fermentable carbohydrates</td>
+                    </tr>
+                    <tr>
+                        <td>Temperature</td>
+                        <td>Optimum 37°C; some grow at 42°C (e.g., <em>S. agalactiae</em>)</td>
+                    </tr>
+                    <tr>
+                        <td>Blood agar</td>
+                        <td>Circular, greyish colonies; α or β hemolysis may be observed</td>
+                    </tr>
+                    <tr>
+                        <td>MacConkey agar</td>
+                        <td>Most do NOT grow; some species (<em>S. faecalis</em>, <em>S. lactis</em>) grow with small colonies after 48 hours</td>
+                    </tr>
+                </table>
+
+                <div class="exam-tip">
+                    Remember: <em>Streptococcus</em> grows better with enrichment (blood/serum), and β-haemolysis is clear while α-haemolysis is greenish.
+                </div>
+
+                <h3>5. ANTIGENS AND TOXINS</h3>
+
+                <h4>Lancefield Serogroups</h4>
+                <p>Classified by group-specific C-carbohydrate antigens (Lancefield, 1933): Groups A, B, C, D, E, F, G, H, K, L, M, N, O, P, Q, R, S, T, U, V.</p>
+
+                <h4>Virulence Factors (Exotoxins & Enzymes)</h4>
+                <table>
+                    <tr>
+                        <th>Toxin/Enzyme</th>
+                        <th>Function</th>
+                    </tr>
+                    <tr>
+                        <td><strong>O-Streptolysin</strong> (oxygen-labile)</td>
+                        <td>Antigenic, forms complexes with antibodies; lyses erythrocytes and leukocytes; tissue damage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S-Streptolysin</strong> (oxygen-stable)</td>
+                        <td>Non-antigenic; also causes cell lysis; associated with anti-inflammatory reaction</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fibrinolysin</strong> (Streptokinase)</td>
+                        <td>Dissolves fibrin clots; spreads infection; anti-inflammatory effect</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Streptodornase</strong></td>
+                        <td>DNase — liquefies purulent exudates (pus)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hyaluronidase</strong></td>
+                        <td>"Spreading factor" — breaks down hyaluronic acid in connective tissue, facilitates spread</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "S.H.F.H." → Streptolysin, Hyaluronidase, Fibrinolysin, Streptodornase — key streptococcal enzymes.
+                </div>
+
+                <h3>6. EPIDEMIOLOGY AND PATHOGENESIS</h3>
+
+                <h4>General Epidemiology</h4>
+                <p>Ubiquitous in environment and normal flora. Disease occurs when host defences are breached (trauma, immunosuppression). Similar toxin/enzyme-mediated pathogenesis as <em>Staphylococcus</em>.</p>
+
+                <h4>Bovine Mastitis</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Major pathogens</td>
+                        <td><em>Streptococcus agalactiae</em>, <em>S. dysgalactiae</em>, <em>S. uberis</em>, <em>S. zooepidemicus</em> (also <em>S. pyogenes</em>)</td>
+                    </tr>
+                    <tr>
+                        <td>Reservoirs</td>
+                        <td><em>S. agalactiae</em> & <em>S. uberis</em>: skin (belly, lips), tonsils, rumen, feces</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission</td>
+                        <td>Suckling calves, contaminated milk, milking utensils, hands (milker), flies</td>
+                    </tr>
+                    <tr>
+                        <td>Herd pattern</td>
+                        <td>Difficult to eradicate; chronic carrier state in animals</td>
+                    </tr>
+                </table>
+
+                <h4>Strangles (Equine Distemper)</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Causative agent</td>
+                        <td><em>Streptococcus equi</em> (Group C, Lancefield)</td>
+                    </tr>
+                    <tr>
+                        <td>Affected age</td>
+                        <td>Young horses (1–2 years)</td>
+                    </tr>
+                    <tr>
+                        <td>Portal of entry</td>
+                        <td>Nasal & buccal mucous membranes</td>
+                    </tr>
+                    <tr>
+                        <td>Pathogenesis</td>
+                        <td>Invades via lymphatics → local lymph node abscesses; septicemic spread → abscesses in lungs, liver, other organs (purpura hemorrhagica)</td>
+                    </tr>
+                </table>
+
+                <h3>7. SYMPTOMATOLOGY</h3>
+
+                <h4>Mastitis (by <em>S. agalactiae</em>) — Chronic Form</h4>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Progression</td>
+                        <td>Chronic inflammation; milk initially contains flakes</td>
+                    </tr>
+                    <tr>
+                        <td>Later milk</td>
+                        <td>Thick purulent fluid (foul smell), fibrin, blood</td>
+                    </tr>
+                    <tr>
+                        <td>Histology</td>
+                        <td>Polymorphonuclear leukocytes infiltrate; alveolar proliferation and fibrosis; lumen blocked with cellular debris</td>
+                    </tr>
+                    <tr>
+                        <td>Tissue changes</td>
+                        <td>Thickened epithelium, granulation tissue</td>
+                    </tr>
+                    <tr>
+                        <td>Production</td>
+                        <td>Reduced milk yield; may affect one or more quarters</td>
+                    </tr>
+                </table>
+
+                <h4>Mastitis (by <em>S. uberis</em>)</h4>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Severity</td>
+                        <td>Less severe; usually confined to one quarter</td>
+                    </tr>
+                    <tr>
+                        <td>Discharge</td>
+                        <td>Purulent yellow secretions</td>
+                    </tr>
+                </table>
+
+                <h4>Strangles Symptoms</h4>
+                <table>
+                    <tr>
+                        <th>Sign</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Nasal discharge</td>
+                        <td>Mucopurulent (initially serous → purulent)</td>
+                    </tr>
+                    <tr>
+                        <td>Temperature</td>
+                        <td>Fever (103–105°F), especially early</td>
+                    </tr>
+                    <tr>
+                        <td>Respiratory</td>
+                        <td>Inflammation of upper respiratory tract; harsh cough</td>
+                    </tr>
+                    <tr>
+                        <td>Lymph nodes</td>
+                        <td>Abscess formation in submaxillary, retropharyngeal, and other mandibular lymph nodes; may rupture and drain</td>
+                    </tr>
+                    <tr>
+                        <td>Complications</td>
+                        <td>Bastard strangles (internal abscesses), purpura hemorrhagica (immune-complex vasculitis)</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🔴 STRANGLES:</strong> Highly contagious equine disease characterized by fever, nasal discharge, and submandibular lymph node abscesses. Caused by <em>S. equi</em> (Group C streptococcus).
+                </div>
+
+                <h3>8. DIAGNOSIS</h3>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Hemolysis pattern</td>
+                        <td>β-haemolytic (clear zone) or α-haemolytic (greenish) on blood agar</td>
+                    </tr>
+                    <tr>
+                        <td>Edwards medium</td>
+                        <td>Contains blood, crystal violet, aesculin — selective for Group D streptococci (<em>S. bovis</em>, <em>S. faecalis</em>)</td>
+                    </tr>
+                    <tr>
+                        <td>CAMP test</td>
+                        <td><em>S. agalactiae</em> produces arrowhead hemolysis when streaked perpendicular to <em>S. aureus</em> on blood agar (diagnostic for Group B)</td>
+                    </tr>
+                    <tr>
+                        <td> Lancefield grouping</td>
+                        <td>Serological grouping using group-specific C-carbohydrate antisera</td>
+                    </tr>
+                    <tr>
+                        <td>Mastitis diagnosis</td>
+                        <td>California Mastitis Test (CMT), milk culture, somatic cell count</td>
+                    </tr>
+                    <tr>
+                        <td>Strangles diagnosis</td>
+                        <td>Nasal swab/abscess culture, PCR, serology</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "CAMP = B for agalactiae" → CAMP test positive = Group B streptococcus = <em>S. agalactiae</em> (mastitis pathogen).
+                </div>
+
+                <h3>9. CONTROL AND PREVENTION</h3>
+                <table>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Mastitis Control</th>
+                        <th>Strangles Control</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Antibiotics</strong></td>
+                        <td>Penicillins (effective against most streptococci); intramammary infusions, systemic if severe</td>
+                        <td>Penicillin G (drug of choice); early treatment critical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vaccination</strong></td>
+                        <td>Vaccines available but limited efficacy due to multiple species/types; strain-specific protection</td>
+                        <td>Strangles vaccines (both modified live and killed) available; immunity may be short-lived</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hygiene/Management</strong></td>
+                        <td>Milking hygiene (teat disinfection, clean equipment), dry cow therapy, culling chronic cases</td>
+                        <td>Isolation of affected horses, quarantine new arrivals, disinfection of equipment, proper disposal of nasal discharge/abscess material</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biosecurity</strong></td>
+                        <td>Test-and-cull for <em>S. agalactiae</em>; prevent calf suckling (use bucket feeding)</td>
+                        <td>Avoid sharing equipment; limit horse movement during outbreaks</td>
+                    </tr>
+                </table>
+
+                <h4>Important Notes</h4>
+                <ul>
+                    <li><strong>Penicillin</strong> is the antibiotic of choice for most streptococcal infections (high susceptibility).</li>
+                    <li>Vaccines often provide only strain-specific immunity due to antigenic variation among streptococcal species/groupings.</li>
+                    <li>For mastitis: dry period treatment, teat sealants, and culling chronically infected cows are key strategies.</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>✅ KEY POINTS:</strong> Streptococcal infections respond well to penicillin but prevention relies on hygiene, management, and species-specific vaccines. Mastitis control requires a comprehensive program including CMT screening.
+                </div>
+
+                <h3>10. PUBLIC HEALTH SIGNIFICANCE</h3>
+                <div class="definition-box">
+                    <strong>Zoonotic potential:</strong> Some streptococci are zoonotic:
+                    <ul>
+                        <li><em>Streptococcus equi</em> (strangles) — rarely infects humans (usually via direct contact with infected horses; causes lymphadenitis)</li>
+                        <li><em>S. zooepidemicus</em> — opportunistic human pathogen from horses (wound infections, rarely pneumonia)</li>
+                        <li><em>S. agalactiae</em> — can cause mastitis in dairy workers</li>
+                        <li><em>S. dysgalactiae</em> — isolated from human infections</li>
+                    </ul>
+                    Generally, animal streptococci are not major human pathogens but can cause occupational infections.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LECTURE #7: STAPHYLOCOCCUS AUREUS -->
+        <section id="lec7" class="lecture-section">
+            <div class="lecture-header" onclick="toggleLecture(7)">
+                <h2>&#128214; Lecture #7: Staphylococcus aureus</h2>
+                <div class="meta">Bacteriology | Gram-Positive Cocci in Clusters</div>
+            </div>
+            <div class="lecture-content" id="content-7">
+
+                <div class="highlight-box">
+                    <strong>🎯 DEFINITION:</strong> <em>Staphylococcus aureus</em> is a Gram-positive, non-motile coccus that occurs in grape-like clusters. It is a major pathogen of animals and humans, producing a wide array of toxins and enzymes, and is a leading cause of mastitis in dairy animals.
+                </div>
+
+                <h3>1. GENERAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Morphology</td>
+                        <td>Spherical cocci arranged in irregular grape-like clusters</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-positive</strong> (purple)</td>
+                    </tr>
+                    <tr>
+                        <td>Motility</td>
+                        <td>Non-motile</td>
+                    </tr>
+                    <tr>
+                        <td>Spore formation</td>
+                        <td>Non-spore-forming</td>
+                    </tr>
+                    <tr>
+                        <td>Oxygen</td>
+                        <td>Aerobes or facultative anaerobes</td>
+                    </tr>
+                </table>
+
+                <h4>Pathogenic vs Non-pathogenic Types</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Key Test</th>
+                        <th>Example</th>
+                        <th>Significance</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Pathogenic</strong></td>
+                        <td><strong>Coagulase-positive</strong></td>
+                        <td><em>Staphylococcus aureus</em> (pyogenes)</td>
+                        <td>Produces pus; causes mastitis, wound infections, toxemia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Non-pathogenic</strong></td>
+                        <td>Coagulase-negative</td>
+                        <td><em>Staphylococcus epidermidis</em></td>
+                        <td>Normal skin flora; opportunistic in immunocompromised</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ COAGULASE TEST:</strong> The key test to differentiate <em>S. aureus</em> (pathogenic, coagulase+) from other staphylococci. Coagulase clots blood plasma — protective mechanism.
+                </div>
+
+                <h3>2. DISTRIBUTION IN NATURE</h3>
+                <table>
+                    <tr>
+                        <th>Reservoir</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Animals & Humans</td>
+                        <td>Skin, anterior nares (nostrils), saliva, intestines, feces</td>
+                    </tr>
+                    <tr>
+                        <td>Environment</td>
+                        <td>Water, soil, air, fomites (milking equipment, towels)</td>
+                    </tr>
+                    <tr>
+                        <td>Persistence</td>
+                        <td>Can survive on surfaces for weeks to months</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "STAPHYLO = grape clusters" → Greek "staphyle" = grape; cocci in bunches like grapes.
+                </div>
+
+                <h3>3. MORPHOLOGY AND STAINING</h3>
+                <table>
+                    <tr>
+                        <th>Characteristic</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Shape</td>
+                        <td>Spherical cocci (0.5–1.5 μm diameter)</td>
+                    </tr>
+                    <tr>
+                        <td>Arrangement</td>
+                        <td>Irregular clusters (like grapes), sometimes pairs or short chains</td>
+                    </tr>
+                    <tr>
+                        <td>Gram stain</td>
+                        <td><strong>Gram-positive</strong> (purple)</td>
+                    </tr>
+                    <tr>
+                        <td>Spore formation</td>
+                        <td>Non-spore-forming</td>
+                    </tr>
+                    <tr>
+                        <td>Capsule</td>
+                        <td>Some strains have capsules (virulence factor)</td>
+                    </tr>
+                </table>
+
+                <h3>4. CULTURAL CHARACTERISTICS</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Oxygen</td>
+                        <td>Aerobic or facultative anaerobic</td>
+                    </tr>
+                    <tr>
+                        <td>Media</td>
+                        <td>Grows on ordinary nutrient agar at 37°C; best growth aerobically</td>
+                    </tr>
+                    <tr>
+                        <td>Colony appearance</td>
+                        <td>Circular, convex, glistening, smooth; white to lemon-yellow pigment</td>
+                    </tr>
+                    <tr>
+                        <td>Hemolysis</td>
+                        <td>On blood agar: β-hemolysis (clear zone) around colonies due to hemolysins</td>
+                    </tr>
+                    <tr>
+                        <td>MacConkey agar</td>
+                        <td>Colonies pinkish-yellow to deep red/purple (some strains grow, unlike most streptococci)</td>
+                    </tr>
+                    <tr>
+                        <td>Other tests</td>
+                        <td>Gelatin liquefaction (+); grows in high NaCl (6.5–10%); ferments glucose, lactose, maltose, sucrose, mannitol with acid production (NO gas)</td>
+                    </tr>
+                    <tr>
+                        <td>Biochemical</td>
+                        <td>Methyl Red (+), VP (variable), Indole (−), H₂S (−)</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🔬 PIGMENT NOTE:</strong> Pigmentation (white vs lemon-yellow) is <strong>NOT reliable</strong> for pathogenicity. Both coagulase-positive and negative strains can be pigmented or non-pigmented.
+                </div>
+
+                <h3>5. ANTIGENS AND TOXINS</h3>
+
+                <h4>Antigens vs Toxins — Definitions</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Antigens</th>
+                        <th>Toxins</th>
+                    </tr>
+                    <tr>
+                        <td>Stimulate immune response</td>
+                        <td>Cause tissue damage/disease</td>
+                    </tr>
+                    <tr>
+                        <td>Proteins/polysaccharides/lipids</td>
+                        <td>Proteins (exotoxins) or LPS (endotoxins)</td>
+                    </tr>
+                    <tr>
+                        <td>Not directly harmful</td>
+                        <td>Directly harmful</td>
+                    </tr>
+                    <tr>
+                        <td>Highly specific</td>
+                        <td>Exotoxins: specific; Endotoxins: non-specific</td>
+                    </tr>
+                    <tr>
+                        <td>Lead to antitoxin production</td>
+                        <td>Endotoxins: no vaccine production</td>
+                    </tr>
+                </table>
+
+                <h4>Exotoxins vs Endotoxins</h4>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Exotoxins</th>
+                        <th>Endotoxins</th>
+                    </tr>
+                    <tr>
+                        <td>Source</td>
+                        <td>Secreted proteins from living bacteria</td>
+                        <td>LPS from G-ve bacterial cell wall</td>
+                    </tr>
+                    <tr>
+                        <td>Produced by</td>
+                        <td>G+ve and some G-ve bacteria</td>
+                        <td>Only G-ve bacteria</td>
+                    </tr>
+                    <tr>
+                        <td>Release</td>
+                        <td>Released during growth (active secretion)</td>
+                        <td>Released upon cell lysis</td>
+                    </tr>
+                    <tr>
+                        <td>Potency</td>
+                        <td>Highly potent, specific effects</td>
+                        <td>Less potent, general effects (fever, shock)</td>
+                    </tr>
+                    <tr>
+                        <td>Examples</td>
+                        <td>Neurotoxins, enterotoxins, hemolysins</td>
+                        <td><em>E. coli</em> LPS, <em>Salmonella</em> LPS</td>
+                    </tr>
+                    <tr>
+                        <td>Vaccine/antitoxin</td>
+                        <td>Yes — form toxoid vaccines, antitoxin therapy</td>
+                        <td>No — not antigenic in same way</td>
+                    </tr>
+                </table>
+
+                <h4>Enzymes & Toxins of <em>Staphylococcus aureus</em></h4>
+                <table>
+                    <tr>
+                        <th>Toxin/Enzyme</th>
+                        <th>Function & Significance</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Coagulase</strong></td>
+                        <td>Clots plasma → fibrin shield around bacteria; protects from phagocytosis and serum killing; diagnostic test (coagulase+)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hyaluronidase</strong></td>
+                        <td>"Spreading factor" — breaks down hyaluronic acid in connective tissue → facilitates spread through tissues</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phosphatase</strong></td>
+                        <td>Splits phenolphthalein diphosphate → pink color (positive test); marker for pathogenic strains</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fibrinolysin</strong></td>
+                        <td>Dissolves fibrin clots; may help spread; anti-inflammatory effect</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Haemolysin</strong></td>
+                        <td>Lyses red blood cells (α, β, γ types); tissue destruction</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Necrotoxin</strong></td>
+                        <td>Causes tissue necrosis (death)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lethal toxin</strong></td>
+                        <td>Systemic toxin causing shock and death</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Leukocidin</strong></td>
+                        <td>Destroys white blood cells (leukocytes); evades host immune response</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enterotoxin</strong></td>
+                        <td>Heat-stable; causes food poisoning/gastroenteritis in humans; vomiting, diarrhea</td>
+                    </tr>
+                </table>
+
+                <div class="memory-trick">
+                    "CHaP FuLL o' LeN" → Coagulase, Hyaluronidase, Phosphatase, Fibrinolysin, Leukocidin, Haemolysin, Necrotoxin, Lethal toxin, (Enterotoxin). Major <em>S. aureus</em> virulence factors.
+                </div>
+
+                <h3>6. EPIDEMIOLOGY AND PATHOGENESIS</h3>
+
+                <h4>Pathogenesis Overview</h4>
+                <p><em>S. aureus</em> uses multiple toxins and enzymes to invade, colonize, and damage host tissues:</p>
+                <ol>
+                    <li><strong>Adherence</strong>: Surface proteins bind to host extracellular matrix proteins (fibronectin, collagen)</li>
+                    <li><strong>Evasion</strong>: Capsule and Protein A (binds Fc of IgG) inhibit phagocytosis; coagulase forms fibrin clot protection</li>
+                    <li><strong>Invasion & Spread</strong>: Hyaluronidase breaks down connective tissue; proteases damage cells</li>
+                    <li><strong>Tissue Damage</strong>: Hemolysins, leukocidin, necrotoxins, lethal toxin destroy cells and cause necrosis</li>
+                    <li><strong>Persistence</strong>: Survives intracellularly within phagocytes for long periods, forming reservoirs</li>
+                </ol>
+
+                <h4>Bovine Mastitis Epidemiology</h4>
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Hosts</td>
+                        <td>Cattle, sheep, goats; occasionally other species</td>
+                    </tr>
+                    <tr>
+                        <td>Reservoirs</td>
+                        <td>Skin of udder, teats; nasal passages; feces; environment (bedding, soil)</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission route</td>
+                        <td>Via teat canal from contaminated skin, environment, milking equipment, hands of milker</td>
+                    </tr>
+                    <tr>
+                        <td>Carrier state</td>
+                        <td>Subclinical mastitis — organism secreted in milk from apparently normal udder</td>
+                    </tr>
+                    <tr>
+                        <td>Survival</td>
+                        <td>Can persist in environment for weeks; grows in NaCl-containing media</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ MASTITIS PATHOGEN:</strong> <em>S. aureus</em> is one of the most common causes of bovine mastitis worldwide. It colonizes teat ends, forms biofilms, and is difficult to eradicate.
+                </div>
+
+                <h4>Other Diseases in Animals</h4>
+                <ul>
+                    <li><strong>Tick pyaemia in lambs</strong>: Septicemic infection following tick bites; abscesses in multiple organs</li>
+                    <li><strong>Yolk-sac infection & arthritis</strong> in poultry: Systemic infection in chicks</li>
+                    <li><strong>Suppurative infections</strong>: Abscesses, wound infections, pyoderma in various species</li>
+                    <li><strong>Metritis, metrophlebitis</strong>: Uterine infections post-parturition</li>
+                </ul>
+
+                <h3>7. SYMPTOMATOLOGY — BOVINE MASTITIS</h3>
+
+                <h4>Acute Staphylococcal Mastitis</h4>
+                <table>
+                    <tr>
+                        <th>Symptom/Sign</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Systemic</td>
+                        <td>Sudden rise in body temperature, loss of appetite, depression</td>
+                    </tr>
+                    <tr>
+                        <td>Udder</td>
+                        <td>Enlargement and hardening (edema, induration) of affected quarter(s); cessation of milk secretion</td>
+                    </tr>
+                    <tr>
+                        <td>Milk initially</td>
+                        <td>Small quantities of blood-stained fluid</td>
+                    </tr>
+                    <tr>
+                        <td>Milk later</td>
+                        <td>Thickened, contains pus and shreds of necrotic tissue</td>
+                    </tr>
+                    <tr>
+                        <td>Severe cases</td>
+                        <td>Affected quarters become dark, cold, gangrenous, may slough; fatal toxaemia within 3–4 days</td>
+                    </tr>
+                </table>
+
+                <h4>Chronic Staphylococcal Mastitis</h4>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Udder</td>
+                        <td>Induration (hardening), fibrosis; chronically damaged</td>
+                    </tr>
+                    <tr>
+                        <td>Milk</td>
+                        <td>Contains clots, may be watery; cell count elevated</td>
+                    </tr>
+                    <tr>
+                        <td>Systemic</td>
+                        <td>Animal appears normal (subclinical chronic infection)</td>
+                    </tr>
+                    <tr>
+                        <td>Production</td>
+                        <td>Permanent reduction in milk yield from affected quarter</td>
+                    </tr>
+                </table>
+
+                <div class="highlight-box">
+                    <strong>🔴 MASTITIS PROGRESSION:</strong> Acute: fever, swollen hard udder, blood-tinged milk → purulent. Chronic: hard "lumpy" udder, clots in milk, reduced production. <em>S. aureus</em> mastitis is notoriously difficult to cure.
+                </div>
+
+                <h3>8. DIAGNOSIS</h3>
+
+                <h4>Laboratory Diagnosis</h4>
+                <table>
+                    <tr>
+                        <th>Method</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Culture</td>
+                        <td>Sheep or rabbit blood agar; incubate at 37°C; examine for β-hemolysis (clear zone)</td>
+                    </tr>
+                    <tr>
+                        <td>Microscopy</td>
+                        <td>Gram stain: Gram-positive cocci in clusters; no spores</td>
+                    </tr>
+                    <tr>
+                        <td>Coagulase test</td>
+                        <td><strong>Slide test</strong> (bound coagulase — rapid screening) or <strong>tube test</strong> (free coagulase — confirmatory); clot formation = positive</td>
+                    </tr>
+                    <tr>
+                        <td>Selective media</td>
+                        <td><strong>Phenolphthalein diphosphate agar</strong>: phosphatase + strains turn pink (pathogens); <strong>Tellurite agar</strong>: inhibits non-pathogens, allows pathogenic growth</td>
+                    </tr>
+                </table>
+
+                <h4>Mastitis-Specific Tests</h4>
+                <ul>
+                    <li><strong>California Mastitis Test (CMT)</strong>: detergent-based test detects somatic cells (indicates inflammation)</li>
+                    <li><strong>Somatic cell count (SCC)</strong>: laboratory quantification of cells in milk</li>
+                    <li><strong>Milk culture</strong>: quantitative bacteriology to identify <em>S. aureus</em></li>
+                </ul>
+
+                <div class="exam-tip">
+                    Coagulase-positive = <em>Staphylococcus aureus</em>. This is the most important diagnostic test to distinguish pathogenic staph from commensal species.
+                </div>
+
+                <h3>9. CONTROL AND PREVENTION</h3>
+                <table>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Antibiotics</strong></td>
+                        <td>Penicillin preparations (first line), streptomycin, tetracycline, erythromycin, neomycin, novobiocin. Intramammary infusions for clinical cases; systemic for severe. Antibiotic resistance is common — use sensitivity testing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vaccination</strong></td>
+                        <td>Vaccines and toxoids available (containing inactivated toxins or bacterins); provide partial protection but not complete; often used as part of control program</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Milking hygiene</strong></td>
+                        <td>Teat disinfection (pre- and post-milking dip), clean milking equipment, proper udder preparation, use of individual towels</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dry cow therapy</strong></td>
+                        <td>Antibiotic infusion at end of lactation to clear existing infection and prevent new infections during dry period</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Culling</strong></td>
+                        <td>Remove chronically infected cows with recurrent mastitis (major reservoir)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Management</strong></td>
+                        <td>Clean, dry bedding; prompt treatment of cases; record keeping; prevent overcrowding</td>
+                    </tr>
+                </table>
+
+                <div class="success-box">
+                    <strong>✅ KEY PREVENTION:</strong> A comprehensive mastitis control program includes: <strong>proper milking hygiene + teat dipping + dry cow therapy + culling chronic cases + regular SCC monitoring</strong>.
+                </div>
+
+                <h3>10. PUBLIC HEALTH SIGNIFICANCE</h3>
+                <div class="highlight-box">
+                    <strong>⚠️ ZOONOTIC ALERT:</strong> <em>Staphylococcus aureus</em> is a major human pathogen:
+                    <ul>
+                        <li><strong>Food poisoning</strong>: Enterotoxin in contaminated milk, meat, dairy products causes vomiting, diarrhea (rapid-onset, 1–6 hours)</li>
+                        <li><strong>Skin infections</strong>: folliculitis, furunculosis, impetigo from direct contact</li>
+                        <li><strong>Toxic shock syndrome</strong>: TSST-1 toxin (menstrual and non-menstrual)</li>
+                        <li><strong>MRSA</strong>: Methicillin-resistant <em>S. aureus</em> — antibiotic-resistant strains in humans and animals (livestock-associated MRSA)</li>
+                    </ul>
+                    Human infections range from minor skin issues to life-threatening sepsis, endocarditis, pneumonia. Zoonotic transmission from animals to humans occurs via direct contact or food.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz" class="lecture-section">
+            <div class="lecture-header" onclick="toggleQuiz()">
+                <h2>🧪 QUIZ: Bacteriology</h2>
+                <div class="meta">Test your knowledge on all lectures</div>
+            </div>
+            <div class="lecture-content" id="content-quiz">
+                <div id="quiz-container">
+                    <!-- BRUCELLOSIS QUESTIONS -->
+                    <div class="quiz-question" data-question="1">
+                        <h4>Question 1: Which <em>Brucella</em> species is most pathogenic to humans?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> Br. abortus</label>
+                            <label><input type="radio" name="q1" value="b"> Br. melitensis</label>
+                            <label><input type="radio" name="q1" value="c"> Br. suis</label>
+                            <label><input type="radio" name="q1" value="d"> Br. ovis</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question" data-question="2">
+                        <h4>Question 2: What is the predilection site in pregnant animals that causes abortion?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> Liver</label>
+                            <label><input type="radio" name="q2" value="b"> Gravid uterus (placenta)</label>
+                            <label><input type="radio" name="q2" value="c"> Kidneys</label>
+                            <label><input type="radio" name="q2" value="d"> Spleen</label>
+                        </div>
+                    </div>
+                    <!-- PASTEURELLA QUESTIONS -->
+                    <div class="quiz-question" data-question="3">
+                        <h4>Question 3: Which staining characteristic is typical of <em>Pasteurella haemolytica</em>?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> Gram-positive cocci</label>
+                            <label><input type="radio" name="q3" value="b"> Bipolar staining (safety-pin)</label>
+                            <label><input type="radio" name="q3" value="c"> Acid-fast bacilli</label>
+                            <label><input type="radio" name="q3" value="d"> No special staining</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question" data-question="4">
+                        <h4>Question 4: What is the primary virulence factor of <em>P. haemolytica</em>?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> Endotoxin (LPS)</label>
+                            <label><input type="radio" name="q4" value="b"> Leukotoxin</label>
+                            <label><input type="radio" name="q4" value="c"> Exotoxin A</label>
+                            <label><input type="radio" name="q4" value="d"> Capsule polysaccharide</label>
+                        </div>
+                    </div>
+                    <!-- SALMONELLA QUESTIONS -->
+                    <div class="quiz-question" data-question="5">
+                        <h4>Question 5: Which <em>Salmonella</em> species is host-adapted to cattle and causes systemic infection?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="a"> S. typhimurium</label>
+                            <label><input type="radio" name="q5" value="b"> S. Dublin</label>
+                            <label><input type="radio" name="q5" value="c"> S. pullorum</label>
+                            <label><input type="radio" name="q5" value="d"> S. enteritidis</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question" data-question="6">
+                        <h4>Question 6: What is the characteristic diarrhea color in fowl typhoid?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q6" value="a"> White</label>
+                            <label><input type="radio" name="q6" value="b"> Greenish</label>
+                            <label><input type="radio" name="q6" value="c"> Bloody</label>
+                            <label><input type="radio" name="q6" value="d"> Yellow</label>
+                        </div>
+                    </div>
+                    <!-- LISTERIOSIS QUESTIONS -->
+                    <div class="quiz-question" data-question="7">
+                        <h4>Question 7: What is the primary virulence factor of <em>Listeria monocytogenes</em>?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q7" value="a"> Endotoxin (LPS)</label>
+                            <label><input type="radio" name="q7" value="b"> Listeriolysin O (LLO)</label>
+                            <label><input type="radio" name="q7" value="c"> Leukotoxin</label>
+                            <label><input type="radio" name="q7" value="d"> Exotoxin A</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question" data-question="8">
+                        <h4>Question 8: Which clinical sign is characteristic of listerial encephalitis ("circling disease")?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q8" value="a"> Head held straight, no circling</label>
+                            <label><input type="radio" name="q8" value="b"> Circling to one side, head tilt, salivation</label>
+                            <label><input type="radio" name="q8" value="c"> Severe watery diarrhea</label>
+                            <label><input type="radio" name="q8" value="d"> Lameness and joint swelling</label>
+                        </div>
+                    </div>
+                    <!-- E. COLI QUESTIONS -->
+                    <div class="quiz-question" data-question="9">
+                        <h4>Question 9: What is the characteristic colony appearance of <em>E. coli</em> on EMB agar?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q9" value="a"> Colorless, transparent</label>
+                            <label><input type="radio" name="q9" value="b"> Metallic green sheen</label>
+                            <label><input type="radio" name="q9" value="c"> Yellow with black center</label>
+                            <label><input type="radio" name="q9" value="d"> Large mucoid colonies</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question" data-question="10">
+                        <h4>Question 10: What is the IMViC pattern for <em>E. coli</em>?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q10" value="a"> --++</label>
+                            <label><input type="radio" name="q10" value="b"> ++--</label>
+                            <label><input type="radio" name="q10" value="c"> +-+-</label>
+                            <label><input type="radio" name="q10" value="d"> -+-+</label>
+                        </div>
+                    </div>
+                    <!-- STREPTOCOCCUS QUESTIONS -->
+                    <div class="quiz-question" data-question="11">
+                        <h4>Question 11: Which hemolysis type on blood agar is characteristic of pathogenic streptococci and shows a clear zone?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q11" value="a"> α-haemolysis (greenish)</label>
+                            <label><input type="radio" name="q11" value="b"> β-haemolysis (clear zone)</label>
+                            <label><input type="radio" name="q11" value="c"> γ-haemolysis (none)</label>
+                            <label><input type="radio" name="q11" value="d"> δ-haemolysis (partial)</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question" data-question="12">
+                        <h4>Question 12: What is the primary clinical sign of strangles in horses?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q12" value="a"> Severe watery diarrhea</label>
+                            <label><input type="radio" name="q12" value="b"> Abscess formation in submaxillary lymph nodes</label>
+                            <label><input type="radio" name="q12" value="c"> Lameness and joint swelling</label>
+                            <label><input type="radio" name="q12" value="d"> Severe respiratory distress</label>
+                        </div>
+                    </div>
+                    <!-- STAPHYLOCOCCUS QUESTIONS -->
+                    <div class="quiz-question" data-question="13">
+                        <h4>Question 13: What is the key diagnostic test to identify <em>Staphylococcus aureus</em>?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q13" value="a"> Catalase test</label>
+                            <label><input type="radio" name="q13" value="b"> Coagulase test</label>
+                            <label><input type="radio" name="q13" value="c"> Oxidase test</label>
+                            <label><input type="radio" name="q13" value="d"> Indole test</label>
+                        </div>
+                    </div>
+                    <div class="quiz-question" data-question="14">
+                        <h4>Question 14: Which toxin of <em>S. aureus</em> is responsible for forming a protective fibrin clot around the bacteria?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q14" value="a"> Hyaluronidase</label>
+                            <label><input type="radio" name="q14" value="b"> Coagulase</label>
+                            <label><input type="radio" name="q14" value="c"> Leukocidin</label>
+                            <label><input type="radio" name="q14" value="d"> Enterotoxin</label>
+                        </div>
+                    </div>
+                    <div class="quiz-actions">
+                        <button class="quiz-btn primary" onclick="submitQuiz()">Submit Answers</button>
+                        <button class="quiz-btn secondary" onclick="resetQuiz()">Reset</button>
+                    </div>
+                    <div class="quiz-result" id="quiz-result"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUMMARY SECTION -->
+        <section id="summary" class="lecture-section">
+            <div class="lecture-header" onclick="toggleSummary()">
+                <h2>📝 COURSE SUMMARY</h2>
+                <div class="meta">Key Takeaways from All Lectures</div>
+            </div>
+            <div class="lecture-content" id="content-summary">
+                <h3>Brucellosis — Key Points (Lec #1)</h3>
+                <ul class="checklist">
+                    <li>Caused by 5 <em>Brucella</em> species: abortus, melitensis, suis, ovis, canis</li>
+                    <li>Gram-negative, non-motile, non-spore-forming coccobacilli</li>
+                    <li>Primary disease: reproductive tract infection → abortion in livestock</li>
+                    <li>Predilection site: gravid uterus (erythritol in placenta promotes bacterial growth)</li>
+                    <li>Transmission: ingestion, coitus, AI, contaminated discharges, milk</li>
+                    <li>Cattle abort at 7-8 months; sheep at 3-4 months</li>
+                    <li>Diagnosis: culture (serum dextrose agar + CO₂) + serology (SAT, RBPT, MRT, CFT)</li>
+                    <li>Control: test & slaughter, vaccination (Strain 19), hygiene</li>
+                    <li>Zoonotic: causes undulant fever in humans (via unpasteurized dairy)</li>
+                    <li>Biocontainment: BSL-3, Category B bioterrorism agent</li>
+                </ul>
+
+                <h3>Pasteurella haemolytica — Key Points (Lec #2)</h3>
+                <ul class="checklist">
+                    <li>Gram-negative, non-motile coccobacilli with characteristic <strong>bipolar staining</strong> (safety-pin appearance)</li>
+                    <li>Normal commensal of upper respiratory tract in cattle, sheep, goats</li>
+                    <li>Becomes pathogenic following stress: transport, viral infection, overcrowding, poor ventilation</li>
+                    <li>Primary disease: <strong>shipping fever</strong> (fibrinous bronchopneumonia)</li>
+                    <li>Primary virulence factor: <strong>leukotoxin</strong> (destroys alveolar macrophages and neutrophils)</li>
+                    <li>Transmission: inhalation of infected droplets from carrier animals</li>
+                    <li>Symptoms: high fever, rapid respiration, death within 12-48 hours, spasmodic cough</li>
+                    <li>Diagnosis: clinical history (post-transport) + lung lesions + isolation on blood agar</li>
+                    <li>Control: vaccination (bacterins/MLV often combined with IBR, PI3, BVD), antibiotics, stress reduction</li>
+                    <li>Does NOT grow on MacConkey agar; small translucent colonies on blood agar</li>
+                </ul>
+
+                <h3>Salmonellosis — Key Points (Lec #3)</h3>
+                <ul class="checklist">
+                    <li>Three main forms: Equine (<em>S. abortus equi</em>, <em>S. typhimurium</em>), Bovine (<em>S. Dublin</em>, <em>S. typhimurium</em>), Avian (Pullorum <em>S. pullorum</em>, Fowl Typhoid <em>S. gallinarum</em>)</li>
+                    <li>Horses: <em>S. abortus equi</em> causes abortion; <em>S. typhimurium</em> causes enteritis/abortion; foals get septicemia with 2-3 day mortality</li>
+                    <li>Cattle: <em>S. Dublin</em> is host-adapted; <em>S. typhimurium</em> broad-host; carriers shed intermittently; survive 2-4 months in environment</li>
+                    <li>Cattle symptoms: fever, diarrhea (may become dysentery), drop in milk, abortion, emaciation; predisposed by parasites, stress, poor nutrition</li>
+                    <li>Poultry: Pullorum affects chicks (95% mortality, white diarrhea, huddling); Fowl Typhoid affects adults (green diarrhea, purple comb/wattles)</li>
+                    <li>General characteristics: Gram-negative rods; H2S production; non-lactose fermenter; non-motile: <em>S. pullorum</em>, <em>S. gallinarum</em> only</li>
+                    <li>Culture: selective media (XLD, Hektoen, SS agar); black-center colonies (H2S+)</li>
+                    <li>Control: test-and-cull, biosecurity, vaccination (poultry live attenuated, cattle for Dublin), rodent control</li>
+                    <li>Zoonotic: <em>S. typhimurium</em> causes foodborne gastroenteritis via contaminated eggs, poultry, meat, milk</li>
+                </ul>
+
+                <h3>Listeriosis — Key Points (Lec #4)</h3>
+                <ul class="checklist">
+                    <li>Caused by <em>Listeria monocytogenes</em> only pathogenic species; worldwide distribution in soil, water, silage, decaying vegetation</li>
+                    <li>Gram-positive (variable), motile rod (tumbling motility at 22-25°C), non-spore-forming</li>
+                    <li>Psychrotrophic: grows at 4°C — concern for refrigerated ready-to-eat foods</li>
+                    <li>Primary virulence factor: <strong>Listeriolysin O (LLO)</strong> — escapes phagosome to cytoplasm; actin-based motility</li>
+                    <li>Predilection sites: brain (encephalitis), gravid uterus (abortion), liver (hepatic necrosis), spleen</li>
+                    <li>Three clinical forms: Encephalitis (circling, head tilt, jaw paralysis, tongue protrusion, salivation), Abortion (4-8 months), Septicemia (neonates)</li>
+                    <li>Characteristic circling to one side (pathognomonic); higher incidence in winter months (linked to silage feeding)</li>
+                    <li>Source: infected silage (poorly fermented, moldy); also soil, water; cattle ticks possible vector</li>
+                    <li>Diagnosis: clinical signs (circling), brain histopathology (microabscesses), isolation on blood agar (beta-hemolysis, grey colonies), tumbling motility test</li>
+                    <li>Control: immediate slaughter of affected animals, destroy carcass (burn/bury), thorough disinfection, avoid spoiled silage</li>
+                    <li>Treatment: penicillin G or ampicillin (but generally not recommended for food animals)</li>
+                    <li>Zoonotic: foodborne listeriosis from contaminated cheese, deli meats, raw vegetables; high mortality 20-30% in invasive human cases</li>
+                </ul>
+
+                <h3>Escherichia coli — Key Points (Lec #5)</h3>
+                <ul class="checklist">
+                    <li>Family: <em>Enterobacteriaceae</em>; discovered by Theodor Escherich (1885); normal intestinal flora but pathogenic strains exist</li>
+                    <li>Gram-negative, non-spore-forming rods; most strains motile (peritrichous flagella); some capsulated (mucoid colonies)</li>
+                    <li>Cultural characteristics: Smooth, moist colonies on NA; <strong>metallic green sheen on EMB</strong>; <strong>pink on MacConkey</strong> (lactose fermenter)</li>
+                    <li>Biochemical (IMViC): <strong>++--</strong> (Indole +, MR +, VP -, Citrate -); H₂S negative; produces acid + gas from glucose/lactose</li>
+                    <li>Antigens: O (somatic, 146 types), H (flagellar, 49 types), K (capsular, 91 types), fimbrial; produces enterotoxins, Shiga toxin (EHEC), colicins</li>
+                    <li>Pathogenic strains: ETEC (enterotoxins — neonatal diarrhea), EPEC (attaching/effacing), EHEC (Shiga toxin — HUS, O157:H7), EIEC (invasive), UPEC (UTI)</li>
+                    <li>In foals: "Joint Ill" / "Sleepy Foal Disease" — septicemic, fever, diarrhea, high mortality</li>
+                    <li>In calves: <strong>Colibacillosis</strong> — "White Scour" (grayish-white fetid diarrhea); importance of colostrum within 48 hours for passive immunity</li>
+                    <li>Diagnosis: Isolation from organs/feces on selective media; IMViC ++--; metallic green sheen on EMB; lactose fermenter</li>
+                    <li>Control: immediate colostrum feeding, hygiene (clean calving pens), vaccines for dams/calves, antibiotics (tetracycline, streptomycin — watch resistance)</li>
+                    <li>Zoonotic: EHEC O157:H7 causes hemorrhagic colitis and HUS; transmitted via undercooked beef, raw milk, contaminated produce; high public health concern</li>
+                </ul>
+
+                <h3>Streptococcus spp. — Key Points (Lec #6)</h3>
+                <ul class="checklist">
+                    <li>Gram-positive, spherical cocci in pairs or chains; non-motile, non-spore-forming; normal flora of skin/mucous membranes</li>
+                    <li>Hemolysis types: β (complete — clear zone, pathogenic), α (partial — green, <em>S. viridans</em>), γ (none)</li>
+                    <li>Lancefield classification: Groups A–V based on C-carbohydrate antigens; important groups: A (<em>S. pyogenes</em>), B (<em>S. agalactiae</em>), C (<em>S. dysgalactiae</em>/<em>S. equi</em>)</li>
+                    <li>Virulence factors: Streptolysins (O & S — hemolytic, tissue damaging), streptokinase (fibrinolysin), streptodornase (DNase), hyaluronidase (spreading factor), M-protein (anti-phagocytic)</li>
+                    <li><strong>Bovine mastitis</strong>: <em>S. agalactiae</em> (chronic, flakes → thick purulent milk), <em>S. uberis</em> (milder, yellow purulent), <em>S. dysgalactiae</em>, <em>S. zooepidemicus</em></li>
+                    <li>Mastitis transmission: calves, milk, hands, utensils; reservoirs: skin (belly/lips), tonsils, rumen, feces</li>
+                    <li><strong>Strangles</strong> (horses): <em>S. equi</em> — fever, mucopurulent nasal discharge, lymph node abscesses (submaxillary, retropharyngeal), can spread to lungs/liver (bastard strangles)</li>
+                    <li>Diagnosis: β-haemolysis on blood agar; CAMP test (+ for <em>S. agalactiae</em>); Edwards medium (Group D); Lancefield serogrouping; PCR/ELISA for <em>S. equi</em></li>
+                    <li>Control: Penicillin (drug of choice); hygiene (milking equipment, teat dipping); culling chronic carriers; strangles — isolation, quarantine, vaccination (variable efficacy)</li>
+                    <li>Zoonotic: Rare — <em>S. equi</em> may cause lymphadenitis in humans; <em>S. zooepidemicus</em> opportunistic; dairy workers exposed to mastitis streptococci</li>
+                </ul>
+
+                <h3>Staphylococcus aureus — Key Points (Lec #7)</h3>
+                <ul class="checklist">
+                    <li>Gram-positive, non-motile cocci in grape-like clusters; facultative anaerobes; normal skin/nares flora but pathogenic strains common</li>
+                    <li>Key distinction: <strong>coagulase-positive</strong> (= <em>S. aureus</em>, pathogenic) vs coagulase-negative (e.g., <em>S. epidermidis</em>, mostly commensal)</li>
+                    <li>Cultural: circular, convex, glistening colonies (white to lemon-yellow) on nutrient agar; β-hemolysis on blood agar; grows on MacConkey (pinkish-yellow to red)</li>
+                    <li>Biochemical: Gelatin liquefaction (+), grows in 6.5–10% NaCl, ferments glucose/lactose/maltose/sucrose/mannitol with acid (NO gas), MR (+), VP (variable), Indole (−), H₂S (−)</li>
+                    <li>Major toxins/enzymes: Coagulase (fibrin shield), Hyaluronidase (spreading), Phosphatase (diagnostic), Fibrinolysin, Hemolysins, Leukocidin, Enterotoxin (food poisoning), Necrotoxin, Lethal toxin</li>
+                    <li><strong>Bovine mastitis</strong>: Major pathogen — acute (fever, swollen hard udder, blood-tinged → purulent milk, toxemia) and chronic (induration, clots in milk, reduced yield)</li>
+                    <li>Reservoirs: skin (udder/teats), nares, feces, bedding, milking equipment; transmission via teat canal; carrier state common (subclinical)</li>
+                    <li>Other diseases: Tick pyaemia in lambs, yolk-sac infection/arthritis in poultry, wound abscesses, metritis</li>
+                    <li>Diagnosis: β-hemolysis on blood agar; Gram stain (clusters); <strong>coagulase test</strong> (slide/tube); phosphatase test (phenolphthalein diphosphate agar); tellurite agar selective</li>
+                    <li>Control: Penicillin (but resistance common); comprehensive mastitis program — teat dipping, dry cow therapy, culling chronic cases, SCC monitoring, hygiene</li>
+                    <li>Vaccines: Available but partial protection only; not fully protective due to strain variation</li>
+                    <li>Zoonotic: Major human pathogen — food poisoning (enterotoxin), skin infections, toxic shock syndrome (TSST-1), MRSA (antibiotic-resistant); transmitted via food or direct contact</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>🎯 Learning Objective:</strong> Student should be able to describe morphology, Gram stain, cultural characteristics, coagulase test significance, major virulence factors (toxins/enzymes), clinical presentation of staphylococcal mastitis (acute vs chronic), diagnosis, control measures (antibiotics, hygiene, dry cow therapy, culling), and public health importance (food poisoning, MRSA) of <em>Staphylococcus aureus</em>.
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Veterinary Bacteriology — Complete Course Notes</p>
+            <p>FVAS Syndicate, Gomal University | Session 2024-2029</p>
+            <p><em>All content reproduced from original course material.</em></p>
+        </footer>
+
+    </div>
+
+    <script>
+        function showSyllabus() { document.getElementById('content-syllabus').classList.toggle('active'); }
+        function toggleLecture(lec) { document.getElementById('content-' + lec).classList.toggle('active'); }
+        function toggleQuiz() { document.getElementById('content-quiz').classList.toggle('active'); }
+        function toggleSummary() { document.getElementById('content-summary').classList.toggle('active'); }
+        function showLecture(n) { document.getElementById('content-' + n).classList.add('active'); }
+        function showQuiz() { 
+            document.getElementById('content-quiz').classList.add('active'); 
+            document.getElementById('content-summary').classList.remove('active');
+            document.getElementById('content-syllabus').classList.remove('active');
+        }
+        function showSummary() { 
+            document.getElementById('content-summary').classList.add('active'); 
+            document.getElementById('content-quiz').classList.remove('active');
+            document.getElementById('content-syllabus').classList.remove('active');
+        }
+        function showSyllabus() { 
+            document.getElementById('content-syllabus').classList.add('active'); 
+            document.getElementById('content-quiz').classList.remove('active');
+            document.getElementById('content-summary').classList.remove('active');
+        }
+
+        const correctAnswers = { q1: 'b', q2: 'b', q3: 'b', q4: 'b', q5: 'b', q6: 'b', q7: 'b', q8: 'b', q9: 'b', q10: 'b', q11: 'b', q12: 'b', q13: 'b', q14: 'b' };
+
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+            for (const [q, ans] of Object.entries(correctAnswers)) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === ans) score++;
+            }
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.innerHTML = `<strong>Result:</strong> You scored ${score} out of ${total}. ${score === total ? '✅ Perfect!' : '❌ Review the material.'}`;
+            resultDiv.className = 'quiz-result show ' + (score === total ? 'pass' : 'fail');
+        }
+
+        function resetQuiz() {
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            document.getElementById('quiz-result').className = 'quiz-result';
+        }
+    </script>
+</body>
+</html>
